@@ -1,0 +1,22 @@
+### Valid User
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "firstname": "Jesse",
+  "lastname": "Wollin",
+  "email": "jesse@example.com",
+  "password": "password",
+  "username": "jesse"
+}
+
+### Invalid Email
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "firstname": "Jesse",
+  "lastname": "Wollin",
+  "password": "password",
+  "email": "bad-email"
+}

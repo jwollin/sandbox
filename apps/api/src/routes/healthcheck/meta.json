@@ -1,0 +1,6 @@
+{
+  "public": true,
+  "name": "Healthcheck",
+  "method": "get",
+  "description": "Health check"
+}

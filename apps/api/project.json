@@ -1,0 +1,12 @@
+{
+  "name": "api",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api",
+        "command": "ts-node-dev --respawn --transpile-only src/server.ts"
+      }
+    }
+  }
+}

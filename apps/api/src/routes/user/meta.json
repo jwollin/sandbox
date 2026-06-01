@@ -1,0 +1,6 @@
+{
+  "public": true,
+  "name": "User",
+  "method": "post",
+  "description": "Create user API"
+}
