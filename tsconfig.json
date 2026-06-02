@@ -4,22 +4,7 @@
   "files": [],
   "references": [
     {
-      "path": "./sandbox-e2e"
-    },
-    {
-      "path": "./sandbox"
-    },
-    {
-      "path": "./web/sandbox-e2e"
-    },
-    {
-      "path": "./web/sandbox"
-    },
-    {
-      "path": "./apps/web/projects-e2e"
-    },
-    {
-      "path": "./apps/web/projects"
+      "path": "./apps/api"
     }
   ]
 }

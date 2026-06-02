@@ -2,10 +2,19 @@
   "name": "api",
   "targets": {
     "serve": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/js:node",
       "options": {
-        "cwd": "apps/api",
-        "command": "ts-node-dev --respawn --transpile-only src/server.ts"
+        "buildTarget": "api:build",
+        "runtimeArgs": ["-r", "tsconfig-paths/register"]
+      }
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "main": "apps/api/src/server.ts",
+        "outputPath": "dist/apps/api",
+        "tsConfig": "apps/api/tsconfig.app.json"
       }
     }
   }

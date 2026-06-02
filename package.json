@@ -4,16 +4,17 @@
   "license": "MIT",
   "scripts": {
     "dev:api": "nx serve api",
-    "build:api": "nx build api",
     "start:api": "nx run api:serve",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "dev": "next dev --turbo"
+    "dev": "next dev --turbo",
+    "build:api": "nx build api && tsc-alias -p apps/api/tsconfig.app.json"
   },
   "private": true,
   "workspaces": [
     "packages/*",
-    "apps/web/*"
+    "apps/web/*",
+    "apps/api/*"
   ],
   "dependencies": {
     "dotenv": "^17.4.2",
@@ -67,6 +68,8 @@
     "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.17",
+    "tsconfig-paths": "^4.2.0",
     "tslib": "^2.3.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.40.0"

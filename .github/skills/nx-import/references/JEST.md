@@ -100,7 +100,7 @@ Jest projects need a `tsconfig.spec.json` that includes test files:
 
 ```json
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",

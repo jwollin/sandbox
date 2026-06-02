@@ -28,10 +28,14 @@ export const bootstrap = async () => {
       }
 
       const routerDirPath = `${routeDir}/${dir}/`;
-      const routerFnPath = `${routerDirPath}/${routerFnFile}`;
-      const route = await import(routerFnPath);
-      const routerMetaPath = `${routerDirPath}/${routerMetaFile}`;
-      const meta = await import(routerMetaPath);
+
+      const [
+        route,
+        meta,
+      ] = await Promise.all([
+        import(`${routerDirPath}/${routerFnFile}`),
+        import(`${routerDirPath}/${routerMetaFile}`)
+      ]);
 
       return {
         router: route.default,

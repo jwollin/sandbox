@@ -1,6 +1,5 @@
-import { CreateUserInput } from '../schemas';
-
-export const createUser = async (data: CreateUserInput) => {
+// TODO: UPDATE
+export const createUser = async (data: any) => {
   // pretend DB call
   return {
     id: crypto.randomUUID(),

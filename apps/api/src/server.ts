@@ -1,7 +1,7 @@
-import { bootstrap, router } from './routes/route-registry';
+import { bootstrap, router } from '@routes/route-registry';
 import express from 'express';
 import { logger } from './lib/logger';
-import { requestId, requestLogging, errorHandling } from './middleware';
+import { requestId, requestLogging, errorHandler } from './middleware';
 export const app = express();
 
 const PORT = process.env.port || 8080;
@@ -11,7 +11,7 @@ async function start() {
   app.use(express.json());
   app.use(requestId);
   app.use(requestLogging);
-  app.use(errorHandling);
+  app.use(errorHandler);
 
   // Routes
   app.use('/api', router);

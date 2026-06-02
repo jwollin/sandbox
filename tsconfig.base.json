@@ -1,1 +1,14 @@
-{}
+{
+  "compilerOptions": {
+    "types": ["node"],
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "@routes/*": ["apps/api/src/routes/*"],
+      "@utils/*": ["apps/api/src/utils/*"],
+      "@middleware/*": ["apps/api/src/middleware/*"],
+      "@services/*": ["apps/api/src/services/*"],
+      "@errors/*": ["apps/api/src/error-handling/*"]
+    }
+  }
+}
