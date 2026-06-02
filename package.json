@@ -6,7 +6,7 @@
   "scripts": {
     "dev:api": "nx serve api",
     "start:api": "nx run api:serve",
-    "build:api": "nx build api && tsc-alias -p apps/api/tsconfig.app.json",
+    "build:api": "nx build api && tsc-alias -p apps/api/tsconfig.json",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
     "dev": "next dev --turbo"

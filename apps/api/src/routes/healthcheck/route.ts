@@ -1,9 +1,9 @@
-import { Router } from 'express';
+import { Request, Response, Router } from 'express';
 import meta from './meta.json';
 
 export const healthcheckRoute = Router();
 
-healthcheckRoute.get('/', (req, res) => {
+healthcheckRoute.get('/', (_req: Request, res: Response) => {
   return res.json({
     status: 'ok',
     name: 'healthcheck',

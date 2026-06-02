@@ -8,8 +8,7 @@
       "@utils/*": ["apps/api/src/utils/*"],
       "@middleware/*": ["apps/api/src/middleware/*"],
       "@services/*": ["apps/api/src/services/*"],
-      "@errors/*": ["apps/api/src/error-handling/*"],
-      "@jwollin/shared-utils": ["./packages/shared-utils/src/index.ts"]
+      "@errors/*": ["apps/api/src/errors/*"]
     }
   }
 }

@@ -1,4 +1,4 @@
-import { bootstrap, router } from '@routes/route-registry';
+import { bootstrap, router } from './routes/route-registry/route';
 import express from 'express';
 import { logger } from './lib/logger';
 import { requestId, requestLogging, errorHandler } from './middleware';

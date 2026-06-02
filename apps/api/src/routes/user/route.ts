@@ -1,16 +1,15 @@
 import { Router } from 'express';
 import {
   CreateUserInputRequest,
-  createUserSchema,
   createUserSchemaRequest,
 } from './schema';
 import { validate } from '../../middleware';
 import { randomUUID } from 'node:crypto';
 import { getDateAndTime } from '@utils/get-date-and-time';
 
-export const userRoute = Router();
+export const router = Router();
 
-userRoute.post('/', validate(createUserSchemaRequest), (req, res) => {
+router.post('/', validate(createUserSchemaRequest), (req, res) => {
   const { firstname, lastname, username, email } = req?.validated
     ?.body as CreateUserInputRequest;
   const { time, date, now } = getDateAndTime();
@@ -38,4 +37,4 @@ userRoute.post('/', validate(createUserSchemaRequest), (req, res) => {
   });
 });
 
-export default userRoute;
+export default router;

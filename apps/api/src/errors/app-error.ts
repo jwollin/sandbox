@@ -6,6 +6,8 @@ export class AppError extends Error {
   ) {
     super(message);
 
+    this.code = code;
+    this.statusCode = statusCode;
     this.name = this.constructor.name;
   }
 }
