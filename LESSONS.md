@@ -5,6 +5,7 @@ A project-centered learning path for mastering advanced development topics inclu
 ## Long-Term Vision
 
 Build a fully functional monorepo featuring:
+
 - **Node.js Backends**: Best practices, scalable architecture, API design
 - **NextJS Applications**: Full-stack capabilities, server-side rendering, API routes
 - **AI Integration**: LLM APIs, agents, prompt engineering
@@ -14,6 +15,7 @@ Build a fully functional monorepo featuring:
 ## Curriculum Overview
 
 ### [Lesson 1: Monorepo Foundation & Nx Setup](./lessons/LESSON_001.md)
+
 **Focus**: Establishing the monorepo infrastructure and project structure
 
 - Understanding Nx workspace architecture
@@ -27,6 +29,7 @@ Build a fully functional monorepo featuring:
 ---
 
 ### [Lesson 2: Node Server Setup & Best Practices](./lessons/LESSON_002.md)
+
 **Focus**: Building a production-ready Node.js backend
 
 - Express.js or Fastify fundamentals
@@ -41,6 +44,7 @@ Build a fully functional monorepo featuring:
 ---
 
 ### [Lesson 3: NextJS Integration & Full-Stack Development](./lessons/LESSON_003.md)
+
 **Focus**: Creating a full-stack application with NextJS
 
 - NextJS project setup within the monorepo
@@ -54,6 +58,7 @@ Build a fully functional monorepo featuring:
 ---
 
 ### [Lesson 4: Infrastructure & DevOps](./lessons/LESSON_004.md)
+
 **Focus**: Containerization, CI/CD, and deployment
 
 - Docker containerization
@@ -67,6 +72,7 @@ Build a fully functional monorepo featuring:
 ---
 
 ### [Lesson 5: AI Integration & LLM Agents](./lessons/LESSON_005.md)
+
 **Focus**: Incorporating AI capabilities into the monorepo
 
 - LLM API integration (OpenAI, Anthropic, etc.)
@@ -80,6 +86,7 @@ Build a fully functional monorepo featuring:
 ---
 
 ### [Lesson 6: Advanced Patterns & Extensibility](./lessons/LESSON_006.md)
+
 **Focus**: Advanced architectural patterns and experimentation
 
 - Monorepo plugin development

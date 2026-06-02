@@ -11,19 +11,22 @@ This is a **learning monorepo** for rounding out full-stack skills. The learner 
 ## Current State (Locked Decisions - Jun 2, 2026)
 
 ### Infrastructure
+
 - **Monorepo tool:** Nx 22.7.5
 - **Output directory:** `dist/apps/api` (standard Nx naming, not `out-tsc`)
 - **Build tool exploration:** esbuild (investigating; tsc-alias as fallback)
 - **Package manager:** Yarn workspaces + Nx
 
 ### Architecture
-- **Apps:** 
+
+- **Apps:**
   - `apps/api` - Express Node.js API
   - `apps/web/app` - Next.js frontend (renamed from `projects`)
 - **Libraries:** `libs/` folder (internal, npm-publishing-ready)
 - **First shared lib:** `libs/shared-types` (types + Zod schemas)
 
 ### Learning Focus
+
 - **Immediate:** Build configuration deep dive (tsconfig, path aliases, esbuild vs tsc-alias)
 - **Short-term:** Error architecture (context, cause chains, recovery hints)
 - **First feature:** AI-integrated API endpoint (cats + fishing themed) with corresponding Next.js frontend
@@ -34,13 +37,17 @@ This is a **learning monorepo** for rounding out full-stack skills. The learner 
 ## How to Use This Space
 
 ### 1. **Socratic Method Approach**
+
 When helping with code, architecture, or debugging:
+
 - Ask guiding questions instead of providing solutions
 - Help the learner discover root causes by exploring step-by-step
 - Reference specific files and ask "what does this do?" before explaining
 
 ### 2. **Decision Ownership**
+
 The learner makes intentional decisions even if imperfect. When faced with choices:
+
 - Present options with tradeoffs (not "this is the right way")
 - Ask what resonates and why
 - Changes are always possible; intentionality matters more than correctness
@@ -48,25 +55,31 @@ The learner makes intentional decisions even if imperfect. When faced with choic
 ### 3. **Understand These Patterns**
 
 #### Backend Patterns (unfamiliar from React)
+
 - **Classes for errors/loggers:** OOP for bundling state + behavior (different from functional components)
 - **Middleware pipelines:** Like React render chains but with side effects
 - **Dependency injection:** Like React context but explicit and non-hierarchical
 - **Services:** Like custom hooks but can modify external state (DB, files, etc.)
 
 #### Frontend Experience (map to backend)
+
 - Validation composition (like component composition with Zod schemas)
 - Error boundaries (like error middleware + app-level error handling)
 - Request/response envelope (like data normalization in Redux)
 
 ### 4. **Code Review Focus**
+
 When reviewing changes:
+
 - Does it match locked decisions?
-- Can the learner explain *why* they chose this approach?
+- Can the learner explain _why_ they chose this approach?
 - Does it scale cleanly (not just "works")?
 - Is it documented or self-evident?
 
 ### 5. **Session Structure**
+
 Each session should:
+
 1. **Recap** what was locked in previous sessions
 2. **Explore** (ask questions, diagnose issues)
 3. **Decide** (intentional choices, even if imperfect)
@@ -77,18 +90,21 @@ Each session should:
 ## Key Learning Outcomes by Phase
 
 ### Phase 1: Build Configuration (Current)
+
 ✅ Understand tsconfig hierarchy and path aliases
 ✅ Know why tsc-alias or esbuild is needed
 ✅ Fix build mismatch: `dist/apps/api` alignment
 ✅ Own the decision between build tools
 
 ### Phase 2: Shared Libraries & Types (Next)
+
 - Create `libs/shared-types` with Zod schemas
 - Both apps import from it
 - Understand Nx dependency management
 - API response types flow to frontend
 
 ### Phase 3: Portfolio Feature
+
 - Build AI-integrated endpoint (cats + fishing)
 - Proper validation → error handling → logging → DB
 - Integration tests prove it works
@@ -137,8 +153,9 @@ sandbox/
 ## Session Log
 
 ### Session 1 (Jun 2, 2026)
+
 - **Topic:** Build configuration diagnosis
-- **Findings:** 
+- **Findings:**
   - tsconfig.app.json outputs to `../../dist/out-tsc` (doesn't match project.json)
   - Path aliases: tsc keeps them, tsc-alias rewrites, esbuild handles natively
   - Decision made: align to `dist/apps/api`, explore esbuild

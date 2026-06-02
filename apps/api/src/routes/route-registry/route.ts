@@ -29,12 +29,9 @@ export const bootstrap = async () => {
 
       const routerDirPath = `${routeDir}/${dir}/`;
 
-      const [
-        route,
-        meta,
-      ] = await Promise.all([
+      const [route, meta] = await Promise.all([
         import(`${routerDirPath}/${routerFnFile}`),
-        import(`${routerDirPath}/${routerMetaFile}`)
+        import(`${routerDirPath}/${routerMetaFile}`),
       ]);
 
       return {
