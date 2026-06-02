@@ -1,5 +1,5 @@
 {
-  "name": "@jessewollin/workshop",
+  "name": "@jwollin/workshop",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -61,7 +61,9 @@
     "eslint-plugin-react-hooks": "5.0.0",
     "jest": "~30.3.0",
     "jest-environment-jsdom": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
+    "jsonc-eslint-parser": "^2.1.0",
     "nx": "22.7.5",
     "prettier": "^3.8.3",
     "sass": "1.62.1",
