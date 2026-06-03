@@ -7,9 +7,9 @@ import { validate } from '../../middleware';
 import { randomUUID } from 'node:crypto';
 import { getDateAndTime } from '@utils/get-date-and-time';
 
-export const router = Router();
+export const route = Router();
 
-router.post('/', validate(createUserSchemaRequest), (req, res) => {
+route.post('/', validate(createUserSchemaRequest), (req, res) => {
   const { firstname, lastname, username, email } = req?.validated
     ?.body as CreateUserInputRequest;
   const { time, date, now } = getDateAndTime();
@@ -37,4 +37,4 @@ router.post('/', validate(createUserSchemaRequest), (req, res) => {
   });
 });
 
-export default router;
+export default route;

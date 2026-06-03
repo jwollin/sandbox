@@ -17,7 +17,6 @@ export default [
           "argsIgnorePattern": "^_",
           "varsIgnorePattern": "^_",
           "vars": "all",
-
         }
       ],
       '@nx/enforce-module-boundaries': [

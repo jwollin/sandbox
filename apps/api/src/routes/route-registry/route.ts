@@ -3,6 +3,7 @@ import pkg from '../../../package.json';
 import fs from 'node:fs/promises';
 import path from 'path';
 import { logger } from '../../lib/logger';
+import { getRouterFiles } from '@routes/route-registry/get-router-files';
 
 export const router = Router();
 
@@ -14,17 +15,15 @@ export const bootstrap = async () => {
   const routes = await Promise.all(
     routeDirectories.map(async (dir) => {
       const directoryFiles = await fs.readdir(`${routeDir}/${dir}`);
-      const routerFnFile = directoryFiles.find((file) =>
-        file.includes('route'),
-      );
-      const routerMetaFile = directoryFiles.find((file) =>
-        file.includes('meta'),
-      );
+      const {
+        router: routerFnFile,
+        meta: routerMetaFile
+      } = getRouterFiles(directoryFiles);
 
       if (!routerFnFile || !routerMetaFile) {
-        const errorMsg = 'A router configuration was not found';
+        const errorMsg = 'Router configurations were not found';
         logger('ERROR', errorMsg);
-        throw new Error();
+        throw new Error(errorMsg);
       }
 
       const routerDirPath = `${routeDir}/${dir}/`;
@@ -44,10 +43,9 @@ export const bootstrap = async () => {
 
   const filteredRoutes = routes.filter((route) => {
     return route.meta.public;
-  });
-
-  filteredRoutes.forEach((route) => {
+  }).map((route) => {
     router.use(`/${route.dir}`, route.router);
+    return route;
   });
 
   router.get('/', async (req, res) => {

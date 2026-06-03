@@ -1,4 +1,5 @@
-import userRoute from './route';
+import route from './route';
 export * from './schema';
-export { userRoute, userRoute as router };
-export default userRoute;
+
+export { route };
+export default route;

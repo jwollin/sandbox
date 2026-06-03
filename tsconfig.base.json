@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node"],
+    "types": ["node", "jest"],
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "paths": {

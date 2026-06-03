@@ -1,7 +1,7 @@
-import { AppError } from './app-error';
+import { AppError, ERROR_CODES } from './';
 
 export class UnauthorizedError extends AppError {
   constructor(message = 'Unauthorized') {
-    super('UNAUTHORIZED', message, 401);
+    super(ERROR_CODES.UNAUTHORIZED, message, 401);
   }
 }

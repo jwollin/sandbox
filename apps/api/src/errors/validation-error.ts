@@ -1,7 +1,7 @@
-import { AppError } from './app-error';
+import { AppError, ERROR_CODES } from './';
 
 export class ValidationError extends AppError {
   constructor(message = 'Validation failed') {
-    super('VALIDATION_ERROR', message, 400);
+    super(ERROR_CODES.VALIDATION_ERROR, message, 400);
   }
 }

@@ -1,6 +1,19 @@
 import type { Config } from 'jest';
-import { getJestProjectsAsync } from '@nx/jest';
+import { createDefaultPreset } from 'ts-jest';
 
-export default async (): Promise<Config> => ({
-  projects: await getJestProjectsAsync(),
-});
+// const tsJestTransformCfg = createDefaultPreset().transform;
+// transform: {
+// ...tsJestTransformCfg,
+// },
+
+const config: Config = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  moduleNameMapper: {
+    '^@routes/(.*)$': '<rootDir>/apps/api/src/routes/$1',
+    '^@utils/(.*)$': '<rootDir>/apps/api/src/utils/$1',
+    '^@middleware/(.*)$': '<rootDir>/apps/api/src/middleware/$1',
+  }
+};
+
+export default config;

@@ -1,7 +1,7 @@
-import { AppError } from './app-error';
+import { AppError, ERROR_CODES } from './';
 
 export class NotFoundError extends AppError {
   constructor(message = 'Resource not found') {
-    super('NOT_FOUND', message, 404);
+    super(ERROR_CODES.NOT_FOUND, message, 404);
   }
 }

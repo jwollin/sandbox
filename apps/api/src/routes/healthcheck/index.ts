@@ -1,5 +1,5 @@
-import healthcheckRoute from './route';
+import route from './route';
 
-export { healthcheckRoute, healthcheckRoute as router };
+export { route };
 
-export default healthcheckRoute;
+export default route;

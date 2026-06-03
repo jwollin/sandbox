@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from '../errors/app-error';
+import { AppError } from '@errors/app-error';
+import { ERROR_CODES } from '@errors/error-codes';
 
 export function errorHandler(
   error: Error | AppError,
@@ -20,7 +21,7 @@ export function errorHandler(
   return res.status(500).json({
     success: false,
     error: {
-      code: 'INTERNAL_SERVER_ERROR',
+      code: ERROR_CODES.INTERNAL_SERVER_ERROR,
       message: 'Ruh roh Raggy',
     },
   });
