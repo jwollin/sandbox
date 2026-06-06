@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "noEmit": false,
+    "outDir": "./apps/api/src",
+    "types": ["node"]
+  },
+  "include": ["apps/api/src/**/*.ts", "apps/api/src/**/*.d.ts"]
+}
