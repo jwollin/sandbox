@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/apps/api",
-    "module": "commonjs",
     "types": ["jest", "node"]
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.css"]

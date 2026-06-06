@@ -1,21 +1,15 @@
-import {
-  string,
-  email,
-  object,
-  // z,
-  // ZodError
-} from 'zod';
+import { string, email, object, z } from 'zod';
 
 export const createUserSchema = object({
   firstname: string().min(2).max(20),
   lastname: string().min(2).max(20),
   username: string().max(25).optional(),
   email: email().max(25),
-  password: string().max(100)
+  password: string().max(100),
 });
 
 export const createUserSchemaRequest = object({
-  body: createUserSchema
+  body: createUserSchema,
 });
 
 export type CreateUserInputRequest = z.infer<

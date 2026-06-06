@@ -14,7 +14,7 @@
       "options": {
         "main": "apps/api/src/server.ts",
         "outputPath": "dist/apps/api",
-        "tsConfig": "apps/api/tsconfig.app.json"
+        "tsConfig": "apps/api/tsconfig.json"
       }
     }
   }

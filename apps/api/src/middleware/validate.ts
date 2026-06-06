@@ -4,9 +4,9 @@ import { z } from 'zod';
 type AnyZodObject = z.ZodObject<any>;
 
 export const validate = <T extends AnyZodObject>(schema: T) => {
-  return (req: Request, _res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     try {
-      req.validated = schema.parse({
+      res.locals.validated = schema.parse({
         body: req.body,
         query: req.query,
         params: req.params,

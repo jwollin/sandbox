@@ -1,0 +1,10 @@
+{
+  "name": "router-registry",
+  "public": false,
+  "routes": [
+    {
+      "parent": "/",
+      "name": "account"
+    }
+  ]
+}

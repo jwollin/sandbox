@@ -1,8 +1,5 @@
 import { Router } from 'express';
-import {
-  CreateUserInputRequest,
-  createUserSchemaRequest,
-} from './schema';
+import { CreateUserInputRequest, createUserSchemaRequest } from './schema';
 import { validate } from '../../middleware';
 import { randomUUID } from 'node:crypto';
 import { getDateAndTime } from '@utils/get-date-and-time';

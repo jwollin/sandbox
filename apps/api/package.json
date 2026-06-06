@@ -1,6 +1,4 @@
 {
   "version": "1.0.0",
-  "scripts": {
-    "build:api": "nx build api && tsc-alias -p apps/api/tsconfig.app.json"
-  }
+  "resolveJsonModule": true
 }

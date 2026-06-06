@@ -1,4 +1,5 @@
 # Full-Stack Learning Context & Lesson Plan
+
 **Last Updated:** June 2, 2026  
 **Learner:** Engineer II (Frontend-specialized, rounding with Node.js backend)  
 **Goal:** Become a competent full-stack developer who understands all architectural choices
@@ -6,6 +7,7 @@
 ---
 
 ## Table of Contents
+
 1. [Learner Context](#learner-context)
 2. [Current State Assessment](#current-state-assessment)
 3. [Repository Structure & Decisions](#repository-structure--decisions)
@@ -18,6 +20,7 @@
 ## Learner Context
 
 ### Professional Background
+
 - **Title:** Engineer II (higher pay tier)
 - **Specialization:** React/Next.js/Apollo Client/TypeScript
 - **Current Responsibilities:**
@@ -26,14 +29,16 @@
   - Shared library work (web/mobile data handling, transformations)
   - Release management and project leadership
   - Server-side components and Next.js server-side patterns
-  
+
 ### Learning Trajectory
+
 - **Experience:** Strong React fundamentals (hooks, state, performance, streaming)
 - **Gap:** Limited direct Node.js server work (have done it, but not primary focus)
 - **Goal Reframe:** Not becoming a backend specialist, but understanding full-stack systems holistically
 - **Additional Context:** Currently taking AI engineering classes; interested in integrating AI into this sandbox
 
 ### Learning Style Preferences
+
 - **Method:** Socratic (guiding questions, not direct solutions)
 - **Pace:** 4-5 hours per week
 - **Learning Type:** Deep dive into 5 things (not broad survey)
@@ -41,6 +46,7 @@
 - **Background:** Art and design background (thinks visually about problems)
 
 ### Personal Details
+
 - **Cat:** Buick 🐱
 - **Fishing concept:** Interested in AI + cats + fishing as portfolio feature theme
 
@@ -49,9 +55,11 @@
 ## Current State Assessment
 
 ### Repository: `jwollin/sandbox`
+
 **Status:** Mid-level learning monorepo with strong foundations but unfinished architecture decisions
 
 #### What's Working Well
+
 1. **Monorepo structure** — Nx 22.7.5 professionally configured
 2. **Tech stack** — Express 5.2.1, Pino logging, Zod validation (production-grade choices)
 3. **TypeScript setup** — Path aliases, linting, formatting enforced
@@ -61,6 +69,7 @@
 #### Critical Gaps
 
 **Build Configuration**
+
 - `tsconfig.app.json` outputs to `../../dist/out-tsc`
 - `project.json` expects `dist/apps/api`
 - Path alias issue: `@routes/route-registry` not resolving at runtime
@@ -68,34 +77,40 @@
 - **Impact:** You can't debug or modify build without getting lucky
 
 **Package/Library Structure**
+
 - `packages/` directory exists but empty
 - No shared code between `apps/api` and `apps/web/projects`
 - No clear distinction between what should be libs, packages, or utils
 
 **Validation Layer**
+
 - Basic Zod validation works, but doesn't compose
 - No custom validators
 - No async validation (check if username exists)
 - Error transformation (Zod errors → API response) is incomplete
 
 **Error Architecture**
+
 - `AppError` class exists but is minimal
 - No error context/metadata
 - No error cause chains
 - No serialization strategy
 
 **Testing & Documentation**
+
 - Jest installed but unused
 - No integration tests
 - No ADRs (Architecture Decision Records)
 - No build documentation
 
 **Observable Issues**
+
 - Logging is console-based, not structured
 - No correlation IDs tracked across requests
 - No observability strategy
 
 ### Decision Log (Locked In)
+
 ```
 ✅ Output directory: dist/apps/api (namespaced, intent-clear)
 ✅ Build tool exploration: esbuild (investigate alternative to tsc-alias)
@@ -153,6 +168,7 @@ sandbox/
 ### Key Configuration Decisions
 
 #### 1. Path Aliases
+
 **Decision:** Keep `@routes`, `@utils`, `@middleware`, `@errors`, but understand the pipeline
 
 ```jsonc
@@ -164,26 +180,28 @@ sandbox/
       "@utils/*": ["apps/api/src/lib/utils/*"],
       "@middleware/*": ["apps/api/src/middleware/*"],
       "@errors/*": ["apps/api/src/error-handling/*"],
-      "@shared/*": ["libs/shared-types/src/*"]
-    }
-  }
+      "@shared/*": ["libs/shared-types/src/*"],
+    },
+  },
 }
 ```
 
 **Pipeline:**
+
 1. TypeScript compilation: Keeps aliases as-is
 2. tsc-alias OR esbuild: Rewrites to actual paths
 3. Runtime: Node executes with real paths
 
 #### 2. Build Output
+
 **Decision:** Standardize on `dist/apps/api` across all configs
 
 ```jsonc
 // apps/api/tsconfig.app.json
 {
   "compilerOptions": {
-    "outDir": "../../dist/apps/api"  // Must match project.json
-  }
+    "outDir": "../../dist/apps/api", // Must match project.json
+  },
 }
 ```
 
@@ -193,14 +211,15 @@ sandbox/
   "targets": {
     "build": {
       "options": {
-        "outputPath": "dist/apps/api"  // Must match tsconfig
-      }
-    }
-  }
+        "outputPath": "dist/apps/api", // Must match tsconfig
+      },
+    },
+  },
 }
 ```
 
 #### 3. Build Tool Strategy
+
 **Current:** `tsc + tsc-alias`  
 **To Explore:** `esbuild` for single-step compilation + native alias handling
 
@@ -209,9 +228,11 @@ sandbox/
 ## Custom Lesson Plan (Socratic Method)
 
 ### Overview
-Three intensive sessions over 2-3 weeks. Each builds on previous learning. Focus on *understanding*, not memorization.
+
+Three intensive sessions over 2-3 weeks. Each builds on previous learning. Focus on _understanding_, not memorization.
 
 ### Session 1: Fix the Build (Understanding TypeScript Compilation)
+
 **Outcome:** You own your build pipeline. Can modify any config and explain why.
 
 #### Part 1.1: Diagnostic Questions
@@ -262,6 +283,7 @@ Success ✓
 ```
 
 **Questions:**
+
 1. Why can't Node understand `@routes`?
 2. Why can't tsc rewrite the paths itself?
 3. What does `tsc-alias` actually do line-by-line?
@@ -286,6 +308,7 @@ cat dist/apps/api/server.js | head -20
 ```
 
 **Questions:**
+
 1. Did it work?
 2. Does the output have real paths or `@routes` aliases?
 3. Is this simpler than `tsc + tsc-alias`?
@@ -296,6 +319,7 @@ cat dist/apps/api/server.js | head -20
 **Decision point:** Should you use esbuild or stick with tsc-alias?
 
 **To decide, answer:**
+
 1. What's the difference in build time?
 2. What's the difference in output size?
 3. Which feels more maintainable to you?
@@ -304,6 +328,7 @@ cat dist/apps/api/server.js | head -20
 ---
 
 ### Session 2: Create `libs/shared-types` (Library Structure & Dependency Management)
+
 **Outcome:** You understand how Nx manages libraries and cross-app dependencies.
 
 #### Part 2.1: Design the Library
@@ -329,6 +354,7 @@ cat dist/apps/api/server.js | head -20
 **Steps (with understanding):**
 
 1. **Create the folder structure** (manually or with Nx generator)
+
    ```
    libs/shared-types/
    ├── src/
@@ -344,6 +370,7 @@ cat dist/apps/api/server.js | head -20
    ```
 
 2. **Define the public API** (what consumers can import)
+
    ```typescript
    // libs/shared-types/src/index.ts
    export * from './schemas';
@@ -359,6 +386,7 @@ cat dist/apps/api/server.js | head -20
 #### Part 2.3: Move Code Into the Library
 
 **What to move:**
+
 - Current Zod schemas from `apps/api` → `libs/shared-types/src/schemas/`
 - API response types → `libs/shared-types/src/types/`
 - Utilities that could be shared → `libs/shared-types/src/validators/`
@@ -370,11 +398,13 @@ cat dist/apps/api/server.js | head -20
 **Verify it works:**
 
 1. In `apps/api/src/routes`, import from the library:
+
    ```typescript
    import { userSchema } from '@shared/schemas';
    ```
 
 2. Build and run:
+
    ```bash
    yarn build:api
    yarn start:api
@@ -385,6 +415,7 @@ cat dist/apps/api/server.js | head -20
 ---
 
 ### Session 3: Build the AI Feature (End-to-End Full-Stack)
+
 **Outcome:** Cats + Fishing + AI = Portfolio piece that proves you understand the whole system
 
 #### Part 3.1: Design the Feature
@@ -445,7 +476,7 @@ export class AppError extends Error {
     message: string,
     public statusCode: number,
     public context?: Record<string, any>,
-    public cause?: Error
+    public cause?: Error,
   ) {
     super(message);
     this.name = 'AppError';
@@ -465,13 +496,14 @@ export class AppError extends Error {
 ```
 
 **Usage:**
+
 ```typescript
 throw new AppError(
   'INVALID_INPUT',
   'Fishing story input failed validation',
   400,
   { field: 'catName', reason: 'required' },
-  validationError
+  validationError,
 );
 ```
 
@@ -489,7 +521,7 @@ export class FishingStoryService {
   async createStory(input: CreateFishingStoryInput): Promise<FishingStory> {
     // TODO: Call AI API (use placeholder for now)
     const story = this.generateStory(input);
-    
+
     const fishingStory: FishingStory = {
       ...input,
       id: crypto.randomUUID(),
@@ -523,18 +555,14 @@ import { AppError } from '@errors/app-error';
 const router = Router();
 const service = new FishingStoryService();
 
-router.post(
-  '/',
-  validate(createFishingStorySchema),
-  async (req, res, next) => {
-    try {
-      const story = await service.createStory(req.body);
-      res.status(201).json(story);
-    } catch (error) {
-      next(error);
-    }
+router.post('/', validate(createFishingStorySchema), async (req, res, next) => {
+  try {
+    const story = await service.createStory(req.body);
+    res.status(201).json(story);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 export default router;
 ```
@@ -550,13 +578,11 @@ import app from '../../server';
 
 describe('POST /api/fishing-stories', () => {
   it('should create a fishing story with valid input', async () => {
-    const response = await request(app)
-      .post('/api/fishing-stories')
-      .send({
-        catName: 'Buick',
-        location: 'Mountain Lake',
-        description: 'A brave cat attempting to catch its first fish',
-      });
+    const response = await request(app).post('/api/fishing-stories').send({
+      catName: 'Buick',
+      location: 'Mountain Lake',
+      description: 'A brave cat attempting to catch its first fish',
+    });
 
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('id');
@@ -565,13 +591,11 @@ describe('POST /api/fishing-stories', () => {
   });
 
   it('should return 400 for invalid input', async () => {
-    const response = await request(app)
-      .post('/api/fishing-stories')
-      .send({
-        catName: '', // Invalid: empty
-        location: 'Mountain Lake',
-        description: 'A brave cat',
-      });
+    const response = await request(app).post('/api/fishing-stories').send({
+      catName: '', // Invalid: empty
+      location: 'Mountain Lake',
+      description: 'A brave cat',
+    });
 
     expect(response.status).toBe(400);
     expect(response.body.error.code).toBe('VALIDATION_ERROR');
@@ -602,7 +626,7 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(input),
       });
-      
+
       if (!response.ok) throw new Error('Failed to create story');
       const data = await response.json();
       setStory(data);
@@ -630,6 +654,7 @@ export default function Home() {
 ### Build Configuration Explained
 
 #### Why the Mismatch Happened
+
 1. ChatGPT suggested `out-tsc` during initial setup
 2. You moved on without updating `project.json`
 3. Nx can work with mismatched configs (through best-effort resolution)
@@ -698,6 +723,7 @@ Response sent or error caught
 ```
 
 **Why this matters:**
+
 - Invalid data never enters business logic
 - Error handling is centralized
 - Each layer has one responsibility
@@ -721,6 +747,7 @@ Else (unknown error)
 ```
 
 **Error Context Chain:**
+
 ```
 Input validation fails (Zod)
   ↓
@@ -740,6 +767,7 @@ Throw AppError(
 ## Building Your Portfolio Piece
 
 ### Why This Matters
+
 By the time you finish, you'll have:
 
 1. **A real full-stack feature** (AI + Cats + Fishing)
@@ -751,9 +779,10 @@ By the time you finish, you'll have:
 7. **Deployment ready** (can add Docker/CI later)
 
 ### What Interviewers See
+
 Instead of "I followed a tutorial," you can say:
 
-*"I built a full-stack system from scratch. Here's my API architecture (show diagram). Here's why I chose Express over Fastify (trade-offs). Here's how I handle errors consistently across the stack (show code). Here's how I validate inputs without letting bad data into business logic (show pattern). I wrote integration tests that prove it works. I deploy it as a monorepo with shared types between frontend and backend. And I can explain every configuration file and why it exists."*
+_"I built a full-stack system from scratch. Here's my API architecture (show diagram). Here's why I chose Express over Fastify (trade-offs). Here's how I handle errors consistently across the stack (show code). Here's how I validate inputs without letting bad data into business logic (show pattern). I wrote integration tests that prove it works. I deploy it as a monorepo with shared types between frontend and backend. And I can explain every configuration file and why it exists."_
 
 That's senior-level thinking.
 
@@ -769,24 +798,28 @@ That's senior-level thinking.
 ## Next Steps
 
 ### Immediate (This Week)
+
 1. Answer the diagnostic questions from Session 1.1
 2. Run the build and check output paths
 3. Explore esbuild as alternative
 4. Report back with findings
 
 ### Week 2
+
 1. Make build configuration decision (tsc-alias vs esbuild)
 2. Create `libs/shared-types` structure
 3. Move existing Zod schemas there
 4. Test cross-app imports
 
 ### Week 3
+
 1. Design the fishing story feature
 2. Build API endpoint with full error handling
 3. Write integration test
 4. Create frontend (Next.js) that consumes it
 
 ### Week 4+
+
 1. Add AI integration (research OpenAI/Claude API)
 2. Add database persistence (PostgreSQL)
 3. Deploy (Vercel for frontend, Railway for API)
@@ -798,18 +831,22 @@ That's senior-level thinking.
 ## Resources & References
 
 ### Understanding TypeScript Compilation
+
 - **Key concept:** tsc ≠ runtime. TypeScript compilation is separate from module resolution.
 - **Question to ask:** "What does the compiled .js file look like?"
 
 ### Understanding Nx
+
 - **Key concept:** Nx doesn't do the compilation; it orchestrates executors.
 - **Question to ask:** "Which executor is handling this, and what does that executor do?"
 
 ### Understanding Express Middleware
+
 - **Key concept:** Middleware is a function pipeline. Each middleware can modify req/res or pass to next().
 - **Question to ask:** "In what order do middlewares run, and what can each one access?"
 
 ### Understanding Full-Stack Architecture
+
 - **Key concept:** Different layers, each with a job. Layers shouldn't know about lower layers' implementation.
 - **Question to ask:** "If I change from in-memory storage to PostgreSQL, how many files do I need to modify?"
 
@@ -825,7 +862,7 @@ That's senior-level thinking.
 **Service Layer:** Where business logic lives (between route handler and data layer)  
 **Monorepo:** Single repository with multiple projects (apps, libs)  
 **Executor:** Tool that Nx uses to run build/test/lint tasks  
-**Dependency Injection:** Passing dependencies into functions (vs. global state or imports)  
+**Dependency Injection:** Passing dependencies into functions (vs. global state or imports)
 
 ---
 
