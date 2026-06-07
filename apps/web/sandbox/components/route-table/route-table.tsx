@@ -66,8 +66,7 @@ export function RouteEditor({ route }: { route: Route }) {
           <span className="font-semibold text-gray-300 uppercase ">Name: </span>
           {route.name}
         </div>
-        <div
-          className="px-5 py-1 font-semibold bg-green-600 text-white flex items-center">
+        <div className="px-5 py-1 font-semibold bg-green-600 text-white flex items-center">
           {route.status}
         </div>
       </div>
@@ -110,9 +109,24 @@ export function RouteEditor({ route }: { route: Route }) {
               className="px-3 py-3 hover:text-white hover:bg-blue-600 cursor-pointer"
               onClick={() => setUrl(routeInputValue)}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
+                />
               </svg>
             </button>
             <button
@@ -143,8 +157,11 @@ export function RouteEditor({ route }: { route: Route }) {
               className="px-3 py-3 hover:text-white hover:bg-blue-600 cursor-pointer"
               onClick={() => setShowEditing(!showEditor)}
             >
-              {showEditor ? <span className="block border border-b border-w border-1" /> :
-                <span className="block h-5 border border-w border-1" />}
+              {showEditor ? (
+                <span className="block border border-b border-w border-1" />
+              ) : (
+                <span className="block h-5 border border-w border-1" />
+              )}
             </button>
           </div>
           {showEditor ? (

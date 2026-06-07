@@ -1,31 +1,13 @@
 {
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": true
-    },
-    "serve": {
-      "executor": "@nx/node:serve",
-      "options": {
-        "port": 8080
-      },
-      "configurations": {
-        "production": {
-          "port": 80
-        }
-      }
     },
     "@nx/js:tsc": {
       "cache": true,
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "default",
-        "^default"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"]
     }
   },
   "analytics": true,

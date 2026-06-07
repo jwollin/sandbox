@@ -1,5 +1,4 @@
 {
-  "name": "@wollin/api",
   "projectType": "application",
   "sourceRoot": "apps/api/src",
   "targets": {
@@ -13,12 +12,21 @@
     },
 
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/api",
-        "main": "apps/api/src/main.ts",
-        "tsConfig": "apps/api/tsconfig.app.json"
+        "outputPath": "dist/apps/api"
+      },
+      "configurations": {
+        "production": {
+          "outputPath": "dist/apps/api",
+          "optimization": true
+        },
+        "development": {
+          "outputPath": "dist/apps/api",
+          "optimization": false
+        }
       }
     },
 
@@ -29,9 +37,11 @@
         "port": 8080
       }
     },
+
     "lint": {
       "executor": "@nx/eslint:lint"
     },
+
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/apps/api"],

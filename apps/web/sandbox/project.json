@@ -1,10 +1,30 @@
 {
-  "name": "sandbox-ui",
+  "name": "@sandbox/app",
   "targets": {
-    "dev": {
-      "executor": "@nx/next:dev-server",
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "production",
       "options": {
-        "port": 300
+        "buildTarget": "@sandbox/app:build",
+        "dev": true
+      }
+    },
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/sandbox"
+      },
+      "configurations": {
+        "production": {
+          "outputPath": "dist/apps/sandbox",
+          "optimization": true
+        },
+        "development": {
+          "outputPath": "dist/apps/sandbox",
+          "optimization": false
+        }
       }
     }
   }
