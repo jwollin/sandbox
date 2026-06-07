@@ -1,0 +1,7 @@
+{
+  "public": true,
+  "name": "login",
+  "parent": "account",
+  "methods": ["get"],
+  "children": []
+}

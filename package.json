@@ -1,22 +1,25 @@
 {
-  "name": "@jwollin/workshop",
+  "name": "sandbox",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "module": "commonjs",
   "workspaces": [
-    "apps/web/*",
-    "apps/api/*"
+    "apps/*",
+    "libs/*"
   ],
   "scripts": {
+    "dev": "nx run-many -t dev --parallel",
+    "build": "nx run-many -t build",
+    "test": "jest",
+    "lint": "nx run-many -t lint",
     "build:api": "cross-env NODE_ENV=production tsup apps/api/src/server.ts",
     "dev:api": "cross-env NODE_ENV=development tsx apps/api/src/server.ts --watch",
-    "dev": "next dev --turbo",
+    "dev:sandbox": "cross-env NODE_ENV=development PORT=8282",
     "plop": "plop",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
     "start:api": "cross-env NODE_ENV=production node dist/server.js",
-    "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -24,6 +27,7 @@
     "@arcjet/next": "^1.4.0",
     "@clerk/nextjs": "^7.4.1",
     "@codemirror/lang-javascript": "^6.2.5",
+    "@codemirror/lang-json": "^6.0.2",
     "@hookform/resolvers": "^5.2.2",
     "@logtape/logtape": "^2.1.1",
     "@sentry/nextjs": "^10.53.1",
@@ -69,6 +73,8 @@
     "@storybook/addon-docs": "^10.4.1",
     "@storybook/addon-vitest": "^10.4.1",
     "@storybook/nextjs-vite": "^10.4.1",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
     "@swc/helpers": "^0.5.21",
     "@tailwindcss/postcss": "^4.3.0",
     "@testing-library/dom": "10.4.0",

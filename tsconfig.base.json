@@ -12,7 +12,8 @@
       "@utils/*": ["apps/api/src/utils/*"],
       "@middleware/*": ["apps/api/src/middleware/*"],
       "@services/*": ["apps/api/src/services/*"],
-      "@errors/*": ["apps/api/src/errors/*"]
+      "@errors/*": ["apps/api/src/errors/*"],
+      "@config": ["./config/src/index.ts"]
     }
   }
 }

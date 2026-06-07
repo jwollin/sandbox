@@ -1,6 +1,11 @@
 import type { NodePlopAPI } from 'plop';
 
 module.exports = function (plop: NodePlopAPI) {
+  plop.setHelper('capitalCase', (text) => {
+    if (!text) return '';
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  });
+
   plop.setGenerator('routes', {
     description: 'Adding route endpoints with all configs',
     prompts: [

@@ -153,7 +153,7 @@ sandbox/
 │   │   │   ├── schemas/        # Zod schemas
 │   │   │   ├── types/          # TypeScript types
 │   │   │   ├── validators/     # Custom validators
-│   │   │   └── index.ts        # Public exports
+│   │   │   └── index.ts.hbs        # Public exports
 │   │   └── project.json
 │   │
 │   └── (future: api-client, utils, etc.)
@@ -341,7 +341,7 @@ cat dist/apps/api/server.js | head -20
    - What would the frontend need to know?
 
 2. **How should it be organized?**
-   - One barrel export (`index.ts`)?
+   - One barrel export (`index.ts.hbs`)?
    - Sub-paths (`@shared/schemas`, `@shared/types`)?
    - Both?
 
@@ -359,12 +359,12 @@ cat dist/apps/api/server.js | head -20
    libs/shared-types/
    ├── src/
    │   ├── schemas/
-   │   │   └── index.ts       # All Zod schemas exported
+   │   │   └── index.ts.hbs       # All Zod schemas exported
    │   ├── types/
-   │   │   └── index.ts       # TypeScript types
+   │   │   └── index.ts.hbs       # TypeScript types
    │   ├── validators/
    │   │   └── custom.ts      # Custom validation functions
-   │   └── index.ts           # Public API (barrel export)
+   │   └── index.ts.hbs           # Public API (barrel export)
    ├── project.json           # Nx config for this lib
    └── tsconfig.json
    ```
@@ -372,7 +372,7 @@ cat dist/apps/api/server.js | head -20
 2. **Define the public API** (what consumers can import)
 
    ```typescript
-   // libs/shared-types/src/index.ts
+   // libs/shared-types/src/index.ts.hbs
    export * from './schemas';
    export * from './types';
    export * from './validators';

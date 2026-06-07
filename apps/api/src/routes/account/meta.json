@@ -1,5 +1,12 @@
 {
   "public": true,
   "name": "account",
-  "parent": "api"
+  "parent": "api",
+  "methods": ["get"],
+  "children": [
+    {
+      "name": "login",
+      "children": []
+    }
+  ]
 }

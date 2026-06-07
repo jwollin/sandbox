@@ -53997,7 +53997,7 @@ and limitations under the License.
         return Notification;
       })();
 
-      //# sourceMappingURL=Notification.js.map
+      //# sourceMappingURL=notification.tsx.js.map
 
       /***/
     },
@@ -113590,14 +113590,14 @@ wercker.yml
         ObserveOnSubscriber.prototype._next = function (value) {
           this.scheduleMessage(
             __WEBPACK_IMPORTED_MODULE_2__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createNext(value),
           );
         };
         ObserveOnSubscriber.prototype._error = function (err) {
           this.scheduleMessage(
             __WEBPACK_IMPORTED_MODULE_2__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createError(err),
           );
           this.unsubscribe();
@@ -113605,7 +113605,7 @@ wercker.yml
         ObserveOnSubscriber.prototype._complete = function () {
           this.scheduleMessage(
             __WEBPACK_IMPORTED_MODULE_2__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createComplete(),
           );
           this.unsubscribe();
@@ -184359,7 +184359,7 @@ empty list will be returned. A validation error will have two properties:
         DelaySubscriber.prototype._next = function (value) {
           this.scheduleNotification(
             __WEBPACK_IMPORTED_MODULE_4__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createNext(value),
           );
         };
@@ -184372,7 +184372,7 @@ empty list will be returned. A validation error will have two properties:
         DelaySubscriber.prototype._complete = function () {
           this.scheduleNotification(
             __WEBPACK_IMPORTED_MODULE_4__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createComplete(),
           );
           this.unsubscribe();
@@ -185670,7 +185670,7 @@ empty list will be returned. A validation error will have two properties:
         MaterializeSubscriber.prototype._next = function (value) {
           this.destination.next(
             __WEBPACK_IMPORTED_MODULE_2__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createNext(value),
           );
         };
@@ -185678,7 +185678,7 @@ empty list will be returned. A validation error will have two properties:
           var destination = this.destination;
           destination.next(
             __WEBPACK_IMPORTED_MODULE_2__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createError(err),
           );
           destination.complete();
@@ -185687,7 +185687,7 @@ empty list will be returned. A validation error will have two properties:
           var destination = this.destination;
           destination.next(
             __WEBPACK_IMPORTED_MODULE_2__Notification__[
-              'a' /* Notification */
+              'a' /* notification.tsx */
             ].createComplete(),
           );
           destination.complete();

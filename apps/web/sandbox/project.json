@@ -1,0 +1,11 @@
+{
+  "name": "sandbox-ui",
+  "targets": {
+    "dev": {
+      "executor": "@nx/next:dev-server",
+      "options": {
+        "port": 300
+      }
+    }
+  }
+}

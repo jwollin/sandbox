@@ -2,11 +2,27 @@
   "routes": [
     {
       "id": "account",
-      "public": false,
+      "public": true,
       "name": "Account",
       "localUrl": "http://localhost:8080",
       "healthPath": "/api/account",
       "description": "Route for account information."
+    },
+    {
+      "id": "user",
+      "public": false,
+      "name": "User",
+      "localUrl": "http://localhost:8080",
+      "healthPath": "/api/user",
+      "description": "Route for account information."
+    },
+    {
+      "id": "login",
+      "public": false,
+      "name": "Login",
+      "localUrl": "http://localhost:8080/api/account/login",
+      "healthPath": "/api/user",
+      "description": "Route for logging in"
     },
     {
       "id": "registry",
@@ -15,7 +31,9 @@
       "localUrl": "http://localhost:8080/api",
       "healthPath": "/api",
       "description": "Main data layer and database orchestrator."
-    },
+    }
+  ],
+  "apps": [
     {
       "id": "sandbox",
       "public": false,

@@ -1,34 +1,40 @@
 import { Router, Request, Response } from 'express';
 import pkg from '../../../package.json';
 import { accountRouter } from '@routes/account';
-import meta from './meta.json';
-import { AppError } from '@errors/app-error';
 import { ERROR_CODES } from '@errors/error-codes';
-
+import registry from './registry.json';
+import { userRouter } from '@routes/user';
 export const router = Router();
 
 router.use('/account', accountRouter);
+router.use('/user', userRouter);
 
 router.get('/', async (req: Request, res: Response) => {
   try {
+    const filteredRoutes = registry.routes.filter((route) => {
+      return route.public;
+    });
     const baseUrl = `${req.protocol}://${req.get('host')}`;
     const routes = await Promise.all(
-      meta.routes.map(async (routeConfig) => {
-        const url = `${baseUrl}/api/${routeConfig.name}`;
+      filteredRoutes.map(async (routeConfig) => {
+        const url = `${baseUrl}/api/${routeConfig.id}`;
         const response = await fetch(url);
         const data = await response.json();
+
         return {
           status: response.status,
           statusCode: response,
           ...data,
         };
       }),
-    )
+    );
 
     res.status(200).json({
       status: 'ok',
       version: pkg.version,
       timestamp: new Date().toISOString(),
+      pageUrl: baseUrl,
+      registry,
       routes: routes.map(({ status, meta, statusCode }) => {
         const { name, parent } = meta;
         const url: URL = new URL(req.url || '', `http://${req.headers.host}`);
@@ -37,7 +43,7 @@ router.get('/', async (req: Request, res: Response) => {
           status,
           name: meta.name,
           parent: `/${meta.parent}`,
-          url: `${baseUrl}/${parent}/${name}${url.search ? `${url.search}` : ''}`
+          url: `${baseUrl}/${parent}/${name}${url.search ? `${url.search}` : ''}`,
         };
       }),
     });
@@ -46,7 +52,7 @@ router.get('/', async (req: Request, res: Response) => {
       status: ERROR_CODES.INTERNAL_SERVER_ERROR,
       error: {
         // @ts-ignore
-        message: error?.message ?? 'Ruh Roh, Raggy!'
+        message: error?.message ?? 'Ruh Roh, Raggy!',
       },
     });
   }
