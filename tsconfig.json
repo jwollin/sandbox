@@ -4,7 +4,10 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/api"
+      "path": "./apps/apis/node"
+    },
+    {
+      "path": "./apps/apis/python"
     },
     {
       "path": "./apps/web/sandbox"

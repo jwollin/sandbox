@@ -1,7 +1,7 @@
 import {
   // bootstrap,
   router,
-} from 'apps/api/src/routes/registry';
+} from './routes/registry';
 import express, { NextFunction, Request, Response } from 'express';
 import { logger } from './lib/logger';
 import { requestId, requestLogging, errorHandler } from './middleware';

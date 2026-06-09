@@ -5,7 +5,15 @@
       "executor": "@nx/next:server",
       "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "@sandbox/app:build",
+        "buildTarget": "app:build",
+        "dev": true
+      }
+    },
+    "dev": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "app:build",
         "dev": true
       }
     },

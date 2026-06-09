@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'path';
 import { logger } from '../../lib/logger';
-import { getRouterFiles } from './';
+import { getRouterFiles } from './index';
 import { writeFileSync } from 'node:fs';
 const env = process.env.NODE_ENV;
 const isDev = env === 'development';

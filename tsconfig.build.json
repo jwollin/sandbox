@@ -3,8 +3,11 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "noEmit": false,
-    "outDir": "./apps/api/src",
+    "outDir": "./apps/apis/node/src",
     "types": ["node"]
   },
-  "include": ["apps/api/src/**/*.ts", "apps/api/src/**/*.d.ts"]
+  "include": [
+    "apps/apis/node/src/**/*.ts",
+    "apps/apis/node/src/**/*.d.ts"
+  ]
 }

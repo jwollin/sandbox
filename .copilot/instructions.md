@@ -120,7 +120,7 @@ sandbox/
 ├── apps/
 │   ├── api/                    # Express API
 │   │   ├── src/
-│   │   │   ├── server.ts
+│   │   │   ├── main.ts
 │   │   │   ├── middleware/
 │   │   │   ├── routes/
 │   │   │   ├── services/

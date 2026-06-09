@@ -1,4 +1,4 @@
-import { AppError, ERROR_CODES } from './';
+import { AppError, ERROR_CODES } from './index';
 
 export class UnauthorizedError extends AppError {
   constructor(message = 'Unauthorized') {

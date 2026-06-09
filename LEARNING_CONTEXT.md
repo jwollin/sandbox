@@ -132,7 +132,7 @@ sandbox/
 ├── apps/
 │   ├── api/                    # Express API server
 │   │   ├── src/
-│   │   │   ├── server.ts       # Entry point
+│   │   │   ├── main.ts       # Entry point
 │   │   │   ├── middleware/     # Request pipeline
 │   │   │   ├── routes/         # Dynamic route registry
 │   │   │   ├── services/       # Business logic
@@ -298,7 +298,7 @@ Success ✓
 yarn add -D esbuild
 
 # Try it
-esbuild apps/api/src/server.ts \
+esbuild apps/api/src/main.ts \
   --outdir=dist/apps/api \
   --format=cjs \
   --platform=node
