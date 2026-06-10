@@ -10,21 +10,22 @@
     "libs/*"
   ],
   "scripts": {
-    "dev": "nx run-many -t dev --parallel",
+    "dev": "nx run-many -t dev",
     "build": "nx run-many -t build",
-    "test": "jest",
+    "test": "nx run-many -t test",
     "lint": "nx run-many -t lint",
-    "build:api": "cross-env NODE_ENV=production tsup apps/apis/node/src/main.ts",
-    "dev:api": "cross-env NODE_ENV=development tsx apps/apis/node/src/main.ts --watch",
-    "dev:sandbox": "cross-env NODE_ENV=development PORT=8282",
-    "python:api": "cd apps/apis/python && uvicorn main:app --reload --port 8000",
-    "all-apis:serve": "nx run-many --target=serve --projects=node-api,python-api --parallel",
-    "plop": "plop",
-    "prettier": "prettier --write .",
-    "prettier:check": "prettier --check .",
-    "start:api": "cross-env NODE_ENV=production node dist/server.js",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+
+    "dev:api": "nx dev node",
+    "build:api": "nx build node",
+    "serve:api": "nx serve node",
+
+    "dev:python": "nx dev python-api",
+
+    "graph": "nx graph",
+
+    "reset": "nx reset",
+
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@arcjet/next": "^1.4.0",

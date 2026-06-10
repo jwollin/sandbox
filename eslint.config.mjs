@@ -19,19 +19,14 @@ export default [
           vars: 'all',
         },
       ],
-      '@nx/enforce-module-boundaries': [
-        'error',
+      "@nx/enforce-module-boundaries": [
+        "error",
         {
-          enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
-          depConstraints: [
-            {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-          ],
-        },
-      ],
+          "allow": [],
+          "enforceBuildableLibDependency": true,
+          "depConstraints": []
+        }
+      ]
     },
   },
   {

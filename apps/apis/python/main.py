@@ -10,9 +10,15 @@ def root():
     }
 
 
-@app.get("/animals")
+@app.get("/anizmals")
 def get_animals():
-    return [
-        {"name": "Mr. Buick", "species": "Cat"},
-        {"name": "Leo", "species": "Lion"}
-    ]
+    return {
+        "data": {
+            "animals": [
+                {"name": "Mr. Buick", "species": "Cat"},
+                {"name": "Leo", "species": "Lion"}
+            ]
+        },
+        "meta": {},
+        "links": {}
+    }

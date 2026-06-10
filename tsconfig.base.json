@@ -13,8 +13,8 @@
       "@middleware/*": ["apps/apis/node/src/middleware/*"],
       "@services/*": ["apps/apis/node/src/services/*"],
       "@errors/*": ["apps/apis/node/src/errors/*"],
-      "@config": ["./config/src/index.ts"],
-      "@shared": ["./libs/shared/src/index.ts"]
+      "@config/*": ["./config/src/index.ts"],
+      "@shared/*": ["./libs/shared/src/index.ts"]
     }
   }
 }

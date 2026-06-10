@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import meta from './meta.json';
-import { loginAccountRouter } from '@routes/account/login';
+import { loginAccountRouter } from './login/index';
 
 export const router = Router();
 

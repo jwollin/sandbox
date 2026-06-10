@@ -1,8 +1,9 @@
 import { Router, Request, Response } from 'express';
 import pkg from '../../../package.json';
+import registry from './registry.json';
+
 import { accountRouter } from '@routes/account';
 import { ERROR_CODES } from '@errors/error-codes';
-import registry from './registry.json';
 import { userRouter } from '@routes/user';
 export const router = Router();
 
@@ -21,10 +22,14 @@ router.get('/', async (req: Request, res: Response) => {
         const response = await fetch(url);
         const data = await response.json();
 
+        const { meta = {} } = data;
+
         return {
-          status: response.status,
-          statusCode: response,
-          ...data,
+          meta: {
+            ...meta,
+            status: response.status,
+            statusCode: response,
+          },
         };
       }),
     );
@@ -35,15 +40,14 @@ router.get('/', async (req: Request, res: Response) => {
       timestamp: new Date().toISOString(),
       pageUrl: baseUrl,
       registry,
-      routes: routes.map(({ status, meta, statusCode }) => {
-        const { name, parent } = meta;
+      routes: routes.map(({ meta }) => {
+        const { name, parent, statusCode, status } = meta;
         const url: URL = new URL(req.url || '', `http://${req.headers.host}`);
         return {
           statusCode,
           status,
-          name: meta.name,
-          parent: `/${meta.parent}`,
-          url: `${baseUrl}/${parent}/${name}${url.search ? `${url.search}` : ''}`,
+          meta,
+          self: `${baseUrl}/${parent}/${name}${url.search ? `${url.search}` : ''}`,
         };
       }),
     });
@@ -51,8 +55,9 @@ router.get('/', async (req: Request, res: Response) => {
     res.status(400).json({
       status: ERROR_CODES.INTERNAL_SERVER_ERROR,
       error: {
-        // @ts-ignore
-        message: error?.message ?? 'Ruh Roh, Raggy!',
+        message: error instanceof Error
+            ? error.message
+            : 'Ruh Roh, Raggy!'
       },
     });
   }

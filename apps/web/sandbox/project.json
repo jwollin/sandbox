@@ -1,19 +1,22 @@
 {
   "name": "@sandbox/app",
+  "projectType": "application",
+  "root": "apps/web/sandbox",
+  "tags": ["web", "next", "ts", "typescript"],
   "targets": {
-    "serve": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "production",
-      "options": {
-        "buildTarget": "app:build",
-        "dev": true
-      }
-    },
     "dev": {
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "app:build",
+        "buildTarget": "@sandbox/app:build",
+        "dev": true
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "@sandbox/app:build",
         "dev": true
       }
     },

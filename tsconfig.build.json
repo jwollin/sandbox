@@ -6,8 +6,5 @@
     "outDir": "./apps/apis/node/src",
     "types": ["node"]
   },
-  "include": [
-    "apps/apis/node/src/**/*.ts",
-    "apps/apis/node/src/**/*.d.ts"
-  ]
+  "include": ["apps/apis/node/src/**/*.ts", "apps/apis/node/src/**/*.d.ts"]
 }

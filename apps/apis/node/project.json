@@ -2,7 +2,8 @@
   "name": "@sandbox/node",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "tags": [],
+  "root": "apps/apis/node",
+  "tags": ["node", "api", "ts", "typescript"],
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
@@ -10,30 +11,19 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/apps/apis",
-        "format": ["cjs"],
-        "bundle": false,
+        "outputPath": "dist/apps/node",
+        "format": ["esm"],
+        "bundle": true,
         "main": "apps/apis/node/src/main.ts",
         "tsConfig": "apps/apis/node/tsconfig.app.json",
-        "assets": ["apps/apis/node/src/assets"],
-        "generatePackageJson": true,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
-      },
-      "configurations": {
-        "development": {},
-        "production": {
-          "esbuildOptions": {
-            "sourcemap": true,
-            "outExtension": {
-              ".js": ".js"
-            }
-          }
-        }
+        "generatePackageJson": true
+      }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx watch src/main.ts",
+        "cwd": "apps/apis/node"
       }
     },
     "prune-lockfile": {
