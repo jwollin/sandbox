@@ -1,21 +1,20 @@
 {
   "name": "sandbox",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
   "license": "MIT",
   "module": "commonjs",
+  "private": true,
   "workspaces": [
-    "apps/apis/node/*",
-    "apps/apis/python/*",
+    "apps/*",
     "libs/*"
   ],
   "scripts": {
     "dev": "nx run-many -t dev",
-    "dev:api": "nx dev @sandbox/node",
-    "dev:web": "nx dev @sandbox/app",
-    "dev:python": "nx dev @sandbox/python",
+    "dev:web": "nx dev app",
+    "dev:api": "nx dev node-api",
+    "dev:python": "nx dev python-api",
     "build": "nx run-many -t build",
-    "build:api": "nx build node",
+    "build:api": "nx build node-api",
     "build:web": "nx build web",
     "test": "nx run-many -t test",
     "test:watch": "jest --watch",

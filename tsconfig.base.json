@@ -8,16 +8,15 @@
     "resolveJsonModule": true,
     "types": ["node", "jest"],
     "paths": {
-      "@components/*": ["apps/apis/node/src/routes/index.ts"],
-      "@routes/*": ["apps/apis/node/src/routes/index.ts"],
-      "@utils/*": ["apps/apis/node/src/utils/*"],
-      "@middleware/*": ["apps/apis/node/src/middleware/*"],
-      "@services/*": ["apps/apis/node/src/services/*"],
-      "@errors/*": ["apps/apis/node/src/errors/*"],
-      "@config/*": ["./config/src/index.ts"],
-      "@shared/*": ["./libs/shared/src/index.ts"],
+      "@buick/utils": ["./libs/utils/src/index.ts"],
+      "@buick/errors": ["./libs/errors/src/index.ts"],
+      "@buick/routes": ["./libs/routes/src/index.ts"],
+      "@buick/middleware": ["./libs/middleware/src/index.ts"],
+      "@config": ["./libs/config/src/index.ts"],
+      "@shared": ["./libs/shared/src/index.ts"],
       "@http": ["./libs/http/src/index.ts"],
-      "ui": ["./libs/ui/src/index.ts"]
+      "@ui": ["./libs/ui/src/index.ts"],
+      "@buick/errors-2": ["./test/errors/src/index.ts"]
     }
   }
 }

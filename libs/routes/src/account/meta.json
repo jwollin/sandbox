@@ -1,0 +1,11 @@
+{
+  "name": "account",
+  "parent": "api",
+  "methods": ["get"],
+  "children": [
+    {
+      "name": "login",
+      "children": []
+    }
+  ]
+}

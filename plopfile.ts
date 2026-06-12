@@ -24,7 +24,7 @@ module.exports = function (plop: NodePlopAPI) {
     actions: [
       {
         type: 'addMany',
-        destination: 'apps/apis/node/src/routes/{{name}}',
+        destination: 'apps/node/src/routes/{{name}}',
         templateFiles: 'plop_templates/routes/*.hbs',
         base: 'plop_templates/routes',
       },

@@ -1,0 +1,11 @@
+{
+  "name": "python-api",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/python && uvicorn main:app --reload --port 8000"
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export { routeRegistry } from './registry';

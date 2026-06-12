@@ -4,13 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/apis/node"
+      "path": "./apps/node-api"
     },
     {
-      "path": "./apps/apis/python"
+      "path": "./apps/python-api"
     },
     {
-      "path": "./apps/web/sandbox"
+      "path": "./apps/web"
     }
   ]
 }
