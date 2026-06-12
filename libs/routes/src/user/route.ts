@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import {
   // CreateUserInputRequest,
-  createUserSchemaRequest
+  createUserSchemaRequest,
 } from './schema';
 import { getDateAndTime } from '@buick/utils';
 import { validate } from '@buick/middleware';

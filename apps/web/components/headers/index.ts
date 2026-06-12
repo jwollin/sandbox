@@ -1,1 +1,1 @@
-export { Dashboard, Dashboard as Header } from './dashboard';
+export { Dashboard, Dashboard as DashboardHeader } from './dashboard';

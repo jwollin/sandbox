@@ -15,8 +15,7 @@
       "@config": ["./libs/config/src/index.ts"],
       "@shared": ["./libs/shared/src/index.ts"],
       "@http": ["./libs/http/src/index.ts"],
-      "@ui": ["./libs/ui/src/index.ts"],
-      "@buick/errors-2": ["./test/errors/src/index.ts"]
+      "@ui": ["./libs/ui/src/index.ts"]
     }
   }
 }

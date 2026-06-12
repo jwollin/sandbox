@@ -1,1 +1,1 @@
-export { CodeEditor } from './map';
+export { Map } from './map';

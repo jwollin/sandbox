@@ -13,13 +13,17 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "types": ["google.maps"],
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@buick/components": ["./components/index.ts"],
+      "@buick/google": ["./components/index.ts"],
+      "@buick/state-management": ["./state-management/index.ts"],
+      "@buick/hooks": ["./hooks/index.ts"]
     }
   },
   "include": [

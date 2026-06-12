@@ -1,1 +1,1 @@
-export { RouteTable } from './route-table';
+export * from './route-table';

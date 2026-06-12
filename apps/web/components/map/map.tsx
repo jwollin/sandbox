@@ -27,7 +27,7 @@ export function Map({
 }) {
   return (
     <APIProvider
-      apiKey={'AIzaSyDWPuIDjL2wp4rWRMn_j87qXAYzAx6F0ho'}
+      apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
       onLoad={() => console.log('Maps API has loaded.')}
     >
       <GoogleMap
@@ -41,9 +41,7 @@ export function Map({
         {markers.map((marker: TypeMarker) => (
           <Marker
             key={marker.id}
-            onClick={() => {
-
-            }}
+            onClick={() => {}}
             position={{ lat: marker.lat, lng: marker.lng }}
           />
         ))}

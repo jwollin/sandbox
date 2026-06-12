@@ -8,7 +8,7 @@
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "@sandbox/app:build",
+        "buildTarget": "web:build",
         "dev": true
       }
     },
@@ -16,7 +16,7 @@
       "executor": "@nx/next:server",
       "defaultConfiguration": "production",
       "options": {
-        "buildTarget": "@sandbox/app:build",
+        "buildTarget": "web:build",
         "dev": true
       }
     },
@@ -25,15 +25,15 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/sandbox"
+        "outputPath": "dist/apps/web"
       },
       "configurations": {
         "production": {
-          "outputPath": "dist/apps/sandbox",
+          "outputPath": "dist/apps/web",
           "optimization": true
         },
         "development": {
-          "outputPath": "dist/apps/sandbox",
+          "outputPath": "dist/apps/web",
           "optimization": false
         }
       }

@@ -1654,6 +1654,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@buick/errors@workspace:libs/errors":
+  version: 0.0.0-use.local
+  resolution: "@buick/errors@workspace:libs/errors"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  languageName: unknown
+  linkType: soft
+
+"@buick/middleware@workspace:libs/middleware":
+  version: 0.0.0-use.local
+  resolution: "@buick/middleware@workspace:libs/middleware"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  languageName: unknown
+  linkType: soft
+
+"@buick/routes@workspace:libs/routes":
+  version: 0.0.0-use.local
+  resolution: "@buick/routes@workspace:libs/routes"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  languageName: unknown
+  linkType: soft
+
+"@buick/utils@workspace:libs/utils":
+  version: 0.0.0-use.local
+  resolution: "@buick/utils@workspace:libs/utils"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  languageName: unknown
+  linkType: soft
+
 "@chromatic-com/playwright@npm:^0.14.2":
   version: 0.14.8
   resolution: "@chromatic-com/playwright@npm:0.14.8"
@@ -3118,7 +3150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@googlemaps/js-api-loader@npm:^2.0.2":
+"@googlemaps/js-api-loader@npm:^2.0.2, @googlemaps/js-api-loader@npm:^2.1.1":
   version: 2.1.1
   resolution: "@googlemaps/js-api-loader@npm:2.1.1"
   dependencies:
@@ -7922,48 +7954,6 @@ __metadata:
   checksum: 10c0/b5bcfb0d87f7d1c1c7c0f7693f53b07866ed9fec4c34a97a8c948fb9a7c0082e416ce4d3b60beb4f5e167cbe04cdeefbf6771320f3ede059b9ce91188c409a5b
   languageName: node
   linkType: hard
-
-"@sandbox/app@workspace:apps/web":
-  version: 0.0.0-use.local
-  resolution: "@sandbox/app@workspace:apps/web"
-  dependencies:
-    "@tailwindcss/postcss": "npm:^4"
-    "@types/node": "npm:^20"
-    "@types/react": "npm:^19"
-    "@types/react-dom": "npm:^19"
-    eslint: "npm:^9"
-    eslint-config-next: "npm:16.2.7"
-    next: "npm:16.2.7"
-    react: "npm:19.2.4"
-    react-dom: "npm:19.2.4"
-    tailwindcss: "npm:^4"
-    typescript: "npm:^5"
-  languageName: unknown
-  linkType: soft
-
-"@sandbox/config@workspace:libs/config":
-  version: 0.0.0-use.local
-  resolution: "@sandbox/config@workspace:libs/config"
-  dependencies:
-    tslib: "npm:^2.3.0"
-  languageName: unknown
-  linkType: soft
-
-"@sandbox/node@workspace:apps/node":
-  version: 0.0.0-use.local
-  resolution: "@sandbox/node@workspace:apps/node"
-  languageName: unknown
-  linkType: soft
-
-"@sandbox/ui@workspace:libs/ui":
-  version: 0.0.0-use.local
-  resolution: "@sandbox/ui@workspace:libs/ui"
-  dependencies:
-    "@types/react": "npm:^19"
-    next: "npm:^16.2.9"
-    react: "npm:^19.2.7"
-  languageName: unknown
-  linkType: soft
 
 "@sec-ant/readable-stream@npm:^0.4.1":
   version: 0.4.1
@@ -13200,6 +13190,14 @@ __metadata:
   checksum: 10c0/39d1df18739d7088736cc75695e98d7087aea43646351b028dfabd5508d79cf6ef4c5bcd90471f52cd87ae470d1c5490c0a8c1a292fbe6ee9ff688061ea0963e
   languageName: node
   linkType: hard
+
+"config@workspace:libs/config":
+  version: 0.0.0-use.local
+  resolution: "config@workspace:libs/config"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  languageName: unknown
+  linkType: soft
 
 "confusing-browser-globals@npm:^1.0.9":
   version: 1.0.11
@@ -22147,6 +22145,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-api@workspace:apps/node-api":
+  version: 0.0.0-use.local
+  resolution: "node-api@workspace:apps/node-api"
+  languageName: unknown
+  linkType: soft
+
 "node-emoji@npm:^2.2.0":
   version: 2.2.0
   resolution: "node-emoji@npm:2.2.0"
@@ -25058,6 +25062,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"python-api@workspace:apps/python-api":
+  version: 0.0.0-use.local
+  resolution: "python-api@workspace:apps/python-api"
+  languageName: unknown
+  linkType: soft
+
 "qrcode-terminal@npm:^0.12.0":
   version: 0.12.0
   resolution: "qrcode-terminal@npm:0.12.0"
@@ -26150,6 +26160,7 @@ __metadata:
     "@electric-sql/pglite-socket": "npm:^0.1.5"
     "@eslint/js": "npm:^9.8.0"
     "@faker-js/faker": "npm:^10.4.0"
+    "@googlemaps/js-api-loader": "npm:^2.1.1"
     "@hookform/resolvers": "npm:^5.2.2"
     "@logtape/logtape": "npm:^2.1.1"
     "@next/bundle-analyzer": "npm:^16.2.6"
@@ -29165,6 +29176,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ui@workspace:libs/ui":
+  version: 0.0.0-use.local
+  resolution: "ui@workspace:libs/ui"
+  dependencies:
+    "@types/react": "npm:^19"
+    next: "npm:^16.2.9"
+    react: "npm:^19.2.7"
+  languageName: unknown
+  linkType: soft
+
 "ultracite@npm:^7.7.0":
   version: 7.8.3
   resolution: "ultracite@npm:7.8.3"
@@ -29923,6 +29944,24 @@ __metadata:
   checksum: 10c0/d42744757422803c73ca64fa51e1ce994354ace4b8438b3f740425a05afeb8df12dd5dadbf6b0839a08dbda56c470d7943c0383854c4fb1ae40ab874eb10427a
   languageName: node
   linkType: hard
+
+"web@workspace:apps/web":
+  version: 0.0.0-use.local
+  resolution: "web@workspace:apps/web"
+  dependencies:
+    "@tailwindcss/postcss": "npm:^4"
+    "@types/node": "npm:^20"
+    "@types/react": "npm:^19"
+    "@types/react-dom": "npm:^19"
+    eslint: "npm:^9"
+    eslint-config-next: "npm:16.2.7"
+    next: "npm:16.2.7"
+    react: "npm:19.2.4"
+    react-dom: "npm:19.2.4"
+    tailwindcss: "npm:^4"
+    typescript: "npm:^5"
+  languageName: unknown
+  linkType: soft
 
 "webidl-conversions@npm:^3.0.0":
   version: 3.0.1
