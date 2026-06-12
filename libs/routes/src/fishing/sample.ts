@@ -41,12 +41,12 @@ type LakeData = {
   };
 };
 
-export const SAMPLE_LAKE = {
+export const SAMPLE_LAKE: LakeData = {
   id: 'mn-00123',
   name: 'Lake Minnetonka',
   location: {
     lat: 44.9417,
-    long: -93.4767,
+    lon: -93.4767,
     state: 'MN',
   },
   depth: {

@@ -6,6 +6,11 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "@buick/errors": "0.0.1",
+    "@buick/middleware": "0.0.1",
+    "@buick/utils": "0.0.1",
+    "express": "^5.2.1",
+    "tslib": "^2.3.0",
+    "zod": "^4.4.3"
   }
 }

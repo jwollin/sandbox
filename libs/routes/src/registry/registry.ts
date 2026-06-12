@@ -39,7 +39,7 @@ routeRegistry.get('/', async (req: Request, res: Response) => {
 
           const data = await response.json();
           const { meta = {}, ...rest } = data;
-          console.log({ response });
+
           return {
             status: response.status,
             statusText: response.statusText,
@@ -85,7 +85,8 @@ routeRegistry.get('/', async (req: Request, res: Response) => {
     res.status(400).json({
       status: ERROR_CODES.INTERNAL_SERVER_ERROR,
       error: {
-        message: error instanceof Error ? error.message : 'Ruh Roh, Raggy!',
+        message:
+          error instanceof Error ? error.message : 'Unexpected registry error.',
       },
     });
   }

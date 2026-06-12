@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -21,9 +22,13 @@
     ],
     "paths": {
       "@buick/components": ["./components/index.ts"],
-      "@buick/google": ["./components/index.ts"],
+      "@buick/components/*": ["./components/*"],
+      "@buick/google": ["./google/index.ts"],
+      "@buick/google/*": ["./google/*"],
       "@buick/state-management": ["./state-management/index.ts"],
-      "@buick/hooks": ["./hooks/index.ts"]
+      "@buick/state-management/*": ["./state-management/*"],
+      "@buick/hooks": ["./hooks/index.ts"],
+      "@buick/hooks/*": ["./hooks/*"]
     }
   },
   "include": [

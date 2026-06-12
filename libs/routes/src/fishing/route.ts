@@ -12,13 +12,34 @@ export type ForecastParams = {
   forecast_days?: string;
 };
 
+const getQueryValue = (value: unknown): string | undefined => {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return getQueryValue(value[0]);
+  }
+
+  return undefined;
+};
+
+export const getForecastParams = (query: Request['query']): ForecastParams => ({
+  latitude: getQueryValue(query['latitude']),
+  longitude: getQueryValue(query['longitude']),
+  current: getQueryValue(query['current']),
+  hourly: getQueryValue(query['hourly']),
+  daily: getQueryValue(query['daily']),
+  forecast_days: getQueryValue(query['forecast_days']),
+});
+
 export const weatherClient = {
   async getForecast(urlParams: ForecastParams) {
     const paramObj = {
       latitude: urlParams.latitude?.toString() ?? '44.9417',
       longitude: urlParams.longitude?.toString() ?? '-93.4767',
       forecast_days: urlParams.forecast_days ?? '7',
-      temperature_unit: urlParams.forecast_days ?? 'fahrenheit',
+      temperature_unit: 'fahrenheit',
       current:
         urlParams.current ??
         ['temperature_2m', 'precipitation', 'wind_speed_10m'].join(','),
@@ -43,7 +64,9 @@ export const weatherClient = {
 };
 
 router.get('/', async (req: Request, res: Response) => {
-  const forecastData = await weatherClient.getForecast(req.params);
+  const forecastData = await weatherClient.getForecast(
+    getForecastParams(req.query),
+  );
   const now = Date.now();
   const H = 60 * 60 * 1000;
   const filtered = forecastData.hourly.time
@@ -60,7 +83,7 @@ router.get('/', async (req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
     meta,
     times: forecastData.hourly.time.length,
-    filteredForcast: filtered,
+    filteredForecast: filtered,
     data: {
       temperature: forecastData.current.temperature_2m,
       unit: '°F',

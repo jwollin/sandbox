@@ -48,23 +48,23 @@ export function RouteTable({ data }: { data: Data }) {
 }
 
 const getStatusProps = (
-  status: string | number
+  status: string | number,
 ): { statusText: string | number; className: string } => {
   const statusCode = String(status);
   if (statusCode.startsWith('2')) {
     return {
       statusText: '200',
-      className: 'bg-green-600'
+      className: 'bg-green-600',
     };
   } else if (statusCode.startsWith('4')) {
     return {
       statusText: '400',
-      className: 'bg-red-600'
+      className: 'bg-red-600',
     };
   } else {
     return {
       statusText: 'Status Unknown',
-      className: 'bg-gray-600'
+      className: 'bg-gray-600',
     };
   }
 };
@@ -88,7 +88,7 @@ export function RouteEditor({ route }: { route: Route }) {
     message: string;
   }>({
     type: '',
-    message: ''
+    message: '',
   });
   const [params, setParams] = React.useState<string>('');
   const [url, setUrl] = React.useState<string>(route.meta.self);
@@ -100,7 +100,7 @@ export function RouteEditor({ route }: { route: Route }) {
       if (!url) {
         return setGlobalMessage({
           type: 'ERROR',
-          message: 'Url was not provided.'
+          message: 'Url was not provided.',
         });
       }
 
@@ -108,10 +108,10 @@ export function RouteEditor({ route }: { route: Route }) {
         const response = await fetch(url);
         const resJson = await response.json();
         return setJSON(JSON.stringify(resJson, null, 4));
-      } catch (e) {
+      } catch {
         setGlobalMessage({
           type: 'ERROR',
-          message: 'Ruh roh Raggy'
+          message: 'Ruh roh Raggy',
         });
       }
     })();
@@ -127,8 +127,7 @@ export function RouteEditor({ route }: { route: Route }) {
           {globalMessage.message}
         </div>
       )}
-      <div
-        className="w-full flex justify-between border-b border-gray-500 bg-cyan-950 hover:bg-gray-700 text-left tracking-wider">
+      <div className="w-full flex justify-between border-b border-gray-500 bg-cyan-950 hover:bg-gray-700 text-left tracking-wider">
         <div className="px-6 py-3">
           <span className="font-semibold text-gray-300 uppercase">
             Name:&nbsp;
@@ -149,7 +148,7 @@ export function RouteEditor({ route }: { route: Route }) {
                 ref={inputRef}
                 style={{
                   fieldSizing: 'content',
-                  resize: 'none'
+                  resize: 'none',
                 }}
                 className="w-full bg-gray-900 px-6 py-2"
                 id="params"
@@ -203,9 +202,8 @@ export function RouteEditor({ route }: { route: Route }) {
                 .then(() => {
                   setGlobalMessage({
                     type: 'INFO',
-                    message: 'Text successfully copied!'
+                    message: 'Text successfully copied!',
                   });
-                  console.log('Text successfully copied!');
                 })
                 .catch((err) => {
                   console.error('Failed to copy text: ', err);
@@ -259,9 +257,6 @@ export function RouteEditor({ route }: { route: Route }) {
               extensions={[jsonPlugin()]}
               readOnly
               editable={false}
-              onChange={(value) => {
-                console.log('Code changed:', value);
-              }}
             />
           </div>
         ) : null}

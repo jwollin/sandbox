@@ -1,7 +1,7 @@
 'use client';
 
+import { useMapsLibrary } from '@vis.gl/react-google-maps';
 import { useEffect, useRef, useState } from 'react';
-import { loadPlaces } from '../../google/load-google';
 
 export interface Address {
   line1: string;
@@ -20,80 +20,84 @@ const EMPTY_ADDRESS: Address = {
 };
 
 export function useAddressAutocomplete() {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const autocompleteRef =
+    useRef<google.maps.places.PlaceAutocompleteElement>(null);
+  const places = useMapsLibrary('places');
 
   const [address, setAddress] = useState<Address>(EMPTY_ADDRESS);
-  // export class google. maps. places. PlaceAutocompleteElement extends HTMLElement implements PlaceAutocompleteElementOptions
-  useEffect(() => {
-    let autocomplete: google.maps.places.Autocomplete | undefined;
 
-    (async () => {
-      {
-        if (!inputRef.current) {
-          return;
+  useEffect(() => {
+    const autocomplete = autocompleteRef.current;
+
+    if (!autocomplete) {
+      return;
+    }
+
+    autocomplete.placeholder = places
+      ? 'Start typing address...'
+      : 'Loading address search...';
+  }, [places]);
+
+  useEffect(() => {
+    const autocomplete = autocompleteRef.current;
+
+    if (!autocomplete || !places) {
+      return;
+    }
+
+    const handleSelect = async (event: Event) => {
+      const selectEvent =
+        event as google.maps.places.PlacePredictionSelectEvent;
+      const place = selectEvent.placePrediction.toPlace();
+      await place.fetchFields({ fields: ['addressComponents'] });
+
+      const next: Address = {
+        line1: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: '',
+      };
+
+      place.addressComponents?.forEach((component) => {
+        if (component.types.includes('street_number')) {
+          next.line1 = `${component.longText ?? ''} `;
         }
 
-        await loadPlaces();
+        if (component.types.includes('route')) {
+          next.line1 += component.longText ?? '';
+        }
 
-        autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
-          types: ['address'],
-          componentRestrictions: {
-            country: ['us'],
-          },
-          fields: ['address_components'],
-        });
+        if (component.types.includes('locality')) {
+          next.city = component.longText ?? '';
+        }
 
-        autocomplete.addListener('place_changed', () => {
-          const place = autocomplete?.getPlace();
+        if (component.types.includes('administrative_area_level_1')) {
+          next.state = component.shortText ?? '';
+        }
 
-          const next: Address = {
-            line1: '',
-            city: '',
-            state: '',
-            zip: '',
-            country: '',
-          };
+        if (component.types.includes('postal_code')) {
+          next.zip = component.longText ?? '';
+        }
 
-          place?.address_components?.forEach((component) => {
-            if (component.types.includes('street_number')) {
-              next.line1 = component.long_name + ' ';
-            }
+        if (component.types.includes('country')) {
+          next.country = component.longText ?? '';
+        }
+      });
 
-            if (component.types.includes('route')) {
-              next.line1 += component.long_name;
-            }
+      setAddress(next);
+    };
 
-            if (component.types.includes('locality')) {
-              next.city = component.long_name;
-            }
-
-            if (component.types.includes('administrative_area_level_1')) {
-              next.state = component.short_name;
-            }
-
-            if (component.types.includes('postal_code')) {
-              next.zip = component.long_name;
-            }
-
-            if (component.types.includes('country')) {
-              next.country = component.long_name;
-            }
-          });
-
-          setAddress(next);
-        });
-      }
-    })();
+    autocomplete.addEventListener('gmp-select', handleSelect);
 
     return () => {
-      if (autocomplete) {
-        google.maps.event.clearInstanceListeners(autocomplete);
-      }
+      autocomplete.removeEventListener('gmp-select', handleSelect);
     };
-  }, []);
+  }, [places]);
 
   return {
-    inputRef,
+    autocompleteRef,
     address,
+    isReady: Boolean(places),
   };
 }

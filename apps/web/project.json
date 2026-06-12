@@ -5,37 +5,26 @@
   "tags": ["web", "next", "ts", "typescript"],
   "targets": {
     "dev": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "development",
+      "executor": "nx:run-commands",
       "options": {
-        "buildTarget": "web:build",
-        "dev": true
+        "command": "./node_modules/.bin/next dev",
+        "cwd": "apps/web"
       }
     },
     "serve": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "production",
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
-        "buildTarget": "web:build",
-        "dev": true
+        "command": "./node_modules/.bin/next start",
+        "cwd": "apps/web"
       }
     },
     "build": {
-      "executor": "@nx/next:build",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "executor": "nx:run-commands",
+      "outputs": ["{projectRoot}/.next"],
       "options": {
-        "outputPath": "dist/apps/web"
-      },
-      "configurations": {
-        "production": {
-          "outputPath": "dist/apps/web",
-          "optimization": true
-        },
-        "development": {
-          "outputPath": "dist/apps/web",
-          "optimization": false
-        }
+        "command": "./node_modules/.bin/next build --webpack",
+        "cwd": "apps/web"
       }
     }
   }

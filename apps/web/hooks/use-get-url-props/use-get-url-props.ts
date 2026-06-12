@@ -1,19 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export function useGetUrlProps() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [urls, setUrls] = useState({ baseUrl: '', fullUrl: '' });
+  const baseUrl = typeof window === 'undefined' ? '' : window.location.origin;
+  const query = searchParams.toString();
 
-  useEffect(() => {
-    const base = window.location.origin;
-    const full = `${base}${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
-
-    setUrls({ baseUrl: base, fullUrl: full });
-  }, [pathname, searchParams]);
-
-  return urls;
+  return {
+    baseUrl,
+    fullUrl: `${baseUrl}${pathname}${query ? `?${query}` : ''}`,
+  };
 }

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 
-type AnyZodObject = z.ZodObject<any>;
+type AnyZodObject = z.ZodObject<z.ZodRawShape>;
 
 export const validate = <T extends AnyZodObject>(schema: T) => {
   return (req: Request, res: Response, next: NextFunction) => {

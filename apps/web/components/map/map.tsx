@@ -1,12 +1,13 @@
 'use client';
 
 import {
+  AdvancedMarker,
   APIProvider,
-  Marker,
   Map as GoogleMap,
 } from '@vis.gl/react-google-maps';
 
 import React from 'react';
+import { AddressForm_AutoFill } from '@buick/components/form';
 
 export type TypeMarker = {
   id: string;
@@ -20,29 +21,29 @@ export type TypeMarker = {
  */
 export function Map({
   markers,
-  ...rest
+  className,
 }: {
   markers: TypeMarker[];
-  [key: string]: any;
+  className?: string;
 }) {
   return (
-    <APIProvider
-      apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
-      onLoad={() => console.log('Maps API has loaded.')}
-    >
+    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}>
+      <AddressForm_AutoFill className={`mt-5`} />
       <GoogleMap
         id={`google-map`}
+        mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID ?? 'DEMO_MAP_ID'}
         defaultZoom={13}
         colorScheme={`DARK`}
         reuseMaps={false}
         defaultCenter={{ lat: 45.3157709, lng: -93.6549327 }}
-        {...rest}
+        className={className}
       >
         {markers.map((marker: TypeMarker) => (
-          <Marker
+          <AdvancedMarker
             key={marker.id}
             onClick={() => {}}
             position={{ lat: marker.lat, lng: marker.lng }}
+            title={marker.name}
           />
         ))}
       </GoogleMap>

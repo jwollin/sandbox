@@ -2,12 +2,16 @@
 
 import { useAddressAutocomplete } from '@buick/hooks';
 
-export function AddressForm_AutoFill() {
-  const { inputRef, address } = useAddressAutocomplete();
+export function AddressForm_AutoFill({ className }: { className?: string }) {
+  const { autocompleteRef, address } = useAddressAutocomplete();
 
   return (
     <>
-      <input ref={inputRef} placeholder="Start typing address..." />
+      <gmp-place-autocomplete
+        ref={autocompleteRef}
+        className={`${className}`}
+        includedRegionCodes={['us']}
+      />
 
       <input value={address.line1} readOnly />
       <input value={address.city} readOnly />

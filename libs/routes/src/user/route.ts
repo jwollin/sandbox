@@ -9,7 +9,7 @@ import { randomUUID } from 'node:crypto';
 
 export const route = Router();
 
-route.post('/', validate(createUserSchemaRequest), (req, res) => {
+route.post('/', validate(createUserSchemaRequest), (_req, res) => {
   // const { firstname, lastname, username, email } = req?.validated
   //   ?.body as CreateUserInputRequest;
   const { time, date, now } = getDateAndTime();

@@ -1,5 +1,9 @@
 export type Hand = number[];
 export type Roll = { [key: string]: number };
+type DiceProperties = {
+  name: string;
+  prettyName: string;
+};
 
 export const populateDice = ({ hand = [] }: { hand: Hand }) => {
   return hand.reduce((acc: Record<number, number>, die: number) => {
@@ -24,12 +28,7 @@ const WILDS = {
 
 export const getDiceProperties = (
   number: string | number,
-):
-  | {
-      name: string;
-      prettyName: string;
-    }
-  | {} => {
+): DiceProperties | null => {
   switch (number.toString()) {
     case '1': {
       return {
@@ -68,7 +67,7 @@ export const getDiceProperties = (
       };
     }
     default:
-      return {};
+      return null;
   }
 };
 
@@ -92,17 +91,7 @@ const checkForStraight = ({ rolls, hand }: { rolls: Roll; hand: Hand }) => {
   };
 };
 
-const getPairs = (number: number, length: number) => {
-  return Array.from({ length }, () => number);
-};
-
-const checkForWilds = ({
-  hand: hand,
-  rolls: _,
-}: {
-  rolls: Roll;
-  hand: Hand;
-}) => {
+const checkForWilds = ({ hand: hand }: { rolls: Roll; hand: Hand }) => {
   const wildArr: string[] = Object.keys(WILDS);
   const filteredHandByWilds: number[] = hand.filter((die: number) => {
     return wildArr.includes(`${die}`);
@@ -255,10 +244,6 @@ export const checkHands = ({ hand }: { hand: Hand }) => {
 };
 
 const TEST_HAND = [1, 1, 2, 5, 6, 1];
-const TEST_HAND_2 = [2, 2, 5, 6, 1, 3];
-const TEST_HAND_3 = [2, 2, 2, 3, 1, 3];
-const TEST_HAND_4 = [1, 1, 1, 3, 3, 3];
-const TEST_HAND_5 = [2, 2, 2, 2, 3, 3];
 const FARKLE = [6, 3, 4, 2, 6, 3];
 describe('farkle utils', () => {
   describe('populateDice', () => {
@@ -276,7 +261,7 @@ describe('farkle utils', () => {
   describe('getHands', () => {
     it('gets all 1s and 5s', () => {
       const result = checkHands({ hand: FARKLE });
-      console.log({ result });
+
       expect(result).toEqual([]);
     });
   });

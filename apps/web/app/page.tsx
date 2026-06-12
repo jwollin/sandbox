@@ -1,22 +1,17 @@
 import React from 'react';
-import {
-  RouteTable,
-  DashboardHeader,
-  // AddressForm_AutoFill,
-  Data,
-} from '@buick/components';
+import { RouteTable, DashboardHeader, Data } from '@buick/components';
+import { getNodeApiBaseUrl } from '../utils/get-api-base-url';
+
+export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-  const response: Response = await fetch('http://localhost:8080/api/');
+  const response: Response = await fetch(`${getNodeApiBaseUrl()}/api/`);
   const data: Data = (await response.json()) ?? {};
-  console.log({ data });
   return (
     <main className="bg-linear-to-tl from-cyan-950 to-stone-900 w-full h-screen text-gray-400">
-      {/*<DashboardHeader />*/}
-      <h1>HELLO WORLD</h1>
+      <DashboardHeader />
       <div className="sm:container mx-auto p-4 w-full">
-        {/*<RouteTable data={data} />*/}
-        {/*<AddressForm_AutoFill />*/}
+        <RouteTable data={data} />
       </div>
     </main>
   );

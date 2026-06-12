@@ -12,7 +12,7 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/apps/node",
+        "outputPath": "dist/apps/node-api",
         "format": ["esm"],
         "bundle": true,
         "main": "apps/node-api/src/main.ts",
@@ -58,24 +58,24 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "node:build",
+        "buildTarget": "node-api:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "node:build:development"
+          "buildTarget": "node-api:build:development"
         },
         "production": {
-          "buildTarget": "node:build:production"
+          "buildTarget": "node-api:build:production"
         }
       }
     },
-    "node": {
+    "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/node-api/jest.config.ts",
-        "passWithNonodes": true
+        "passWithNoTests": true
       }
     }
   }
