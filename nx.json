@@ -34,5 +34,12 @@
       }
     }
   ],
-  "nxCloudId": "6a25de9e3cfa4147fea826f1"
+  "nxCloudId": "6a25de9e3cfa4147fea826f1",
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "jest"
+      }
+    }
+  }
 }

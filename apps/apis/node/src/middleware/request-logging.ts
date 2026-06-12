@@ -6,18 +6,21 @@ export function requestLogging(
   next: NextFunction,
 ) {
   const start = Date.now();
+  const query = req.query;
 
-  res.on('finish', () => {
-    const duration = Date.now() - start;
+  if (query.enableLogging) {
+    res.on('finish', () => {
+      const duration = Date.now() - start;
 
-    console.info({
-      end: `${duration}ms`,
-      requestId: req.headers['x-request-id'],
-      status: `${res.statusCode}`,
-      method: req.method,
-      url: req.url,
+      console.info({
+        end: `${duration}ms`,
+        requestId: req.headers['x-request-id'],
+        status: `${res.statusCode}`,
+        method: req.method,
+        url: req.url,
+      });
     });
-  });
+  }
 
   next();
 }

@@ -1,4 +1,4 @@
-export const ACCEPTED_ROUTER_FILES = ['route.ts', 'route.js', 'meta.json'];
+export const ACCEPTED_ROUTER_FILES = ['registry.ts', 'route.js', 'meta.json'];
 
 export const getRouterFiles = (directoryFiles: string[]) => {
   return ACCEPTED_ROUTER_FILES.reduce(

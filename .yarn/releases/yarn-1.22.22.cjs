@@ -150766,7 +150766,7 @@ THE SOFTWARE.
         }
 
         /**
-         * Launch $EDITOR on user press enter
+         * Launch $Map on user press enter
          */
 
         startExternalEditor() {

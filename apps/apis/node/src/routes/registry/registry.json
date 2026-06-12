@@ -3,34 +3,17 @@
     {
       "id": "account",
       "public": true,
-      "name": "Account",
-      "localUrl": "http://localhost:8080",
-      "healthPath": "/api/account",
-      "description": "Route for account information."
+      "name": "Account"
     },
     {
-      "id": "user",
-      "public": false,
-      "name": "User",
-      "localUrl": "http://localhost:8080",
-      "healthPath": "/api/user",
-      "description": "Route for account information."
+      "id": "fishing",
+      "public": true,
+      "name": "Fishing"
     },
     {
       "id": "login",
       "public": false,
-      "name": "Login",
-      "localUrl": "http://localhost:8080/api/account/login",
-      "healthPath": "/api/user",
-      "description": "Route for logging in"
-    },
-    {
-      "id": "registry",
-      "public": false,
-      "name": "App Registry",
-      "localUrl": "http://localhost:8080/api",
-      "healthPath": "/api",
-      "description": "Main data layer and database orchestrator."
+      "name": "Login"
     }
   ],
   "apps": [

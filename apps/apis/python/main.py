@@ -9,8 +9,7 @@ def root():
         "health": {"message": "Python service alive"}
     }
 
-
-@app.get("/anizmals")
+@app.get("/animals")
 def get_animals():
     return {
         "data": {

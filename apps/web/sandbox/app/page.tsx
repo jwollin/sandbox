@@ -1,6 +1,6 @@
 import React from 'react';
 import { Register } from '@/components/code-editor/editor';
-import { RouteTable } from '../components';
+import { RouteTable } from '@/components';
 import { Header } from '../components/headers/dashboard';
 
 export type Data = {
@@ -16,15 +16,18 @@ export type Data = {
 };
 
 export type Route = {
-  name: string;
-  parent: string;
   status: string;
-  url: string;
+  meta: {
+    self: string;
+    parent: string;
+    name: string;
+  };
 };
 
 export default async function Home() {
   const response: Response = await fetch('http://localhost:8080/api/');
   const data: Data = (await response.json()) ?? {};
+  console.log({ data });
   return (
     <main className="bg-linear-to-tl from-cyan-950 to-stone-900 w-full h-screen text-gray-400">
       <Header />

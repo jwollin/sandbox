@@ -1,5 +1,4 @@
 {
-  "public": true,
   "name": "account",
   "parent": "api",
   "methods": ["get"],

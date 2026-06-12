@@ -13,7 +13,7 @@ export const populateDice = ({ hand = [] }: { hand: Hand }) => {
   }, {});
 };
 
-const wilds = {
+const WILDS = {
   1: {
     value: 100,
   },
@@ -22,20 +22,53 @@ const wilds = {
   },
 };
 
-export const getNameFromNumber = (number: string) => {
-  switch (number) {
-    case '1':
-      return 'one';
-    case '2':
-      return 'two';
-    case '3':
-      return 'three';
-    case '4':
-      return 'four';
-    case '5':
-      return 'five';
-    case '6':
-      return 'six';
+export const getDiceProperties = (
+  number: string | number,
+):
+  | {
+      name: string;
+      prettyName: string;
+    }
+  | {} => {
+  switch (number.toString()) {
+    case '1': {
+      return {
+        name: 'one',
+        prettyName: 'ace',
+      };
+    }
+    case '2': {
+      return {
+        name: 'two',
+        prettyName: 'deuce',
+      };
+    }
+    case '3': {
+      return {
+        name: 'three',
+        prettyName: 'three',
+      };
+    }
+    case '4': {
+      return {
+        name: 'four',
+        prettyName: 'four',
+      };
+    }
+    case '5': {
+      return {
+        name: 'five',
+        prettyName: 'five',
+      };
+    }
+    case '6': {
+      return {
+        name: 'six',
+        prettyName: 'six',
+      };
+    }
+    default:
+      return {};
   }
 };
 
@@ -70,7 +103,7 @@ const checkForWilds = ({
   rolls: Roll;
   hand: Hand;
 }) => {
-  const wildArr: string[] = Object.keys(wilds);
+  const wildArr: string[] = Object.keys(WILDS);
   const filteredHandByWilds: number[] = hand.filter((die: number) => {
     return wildArr.includes(`${die}`);
   });

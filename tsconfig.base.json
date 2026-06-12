@@ -8,13 +8,16 @@
     "resolveJsonModule": true,
     "types": ["node", "jest"],
     "paths": {
-      "@routes/*": ["apps/apis/node/src/routes/*"],
+      "@components/*": ["apps/apis/node/src/routes/index.ts"],
+      "@routes/*": ["apps/apis/node/src/routes/index.ts"],
       "@utils/*": ["apps/apis/node/src/utils/*"],
       "@middleware/*": ["apps/apis/node/src/middleware/*"],
       "@services/*": ["apps/apis/node/src/services/*"],
       "@errors/*": ["apps/apis/node/src/errors/*"],
       "@config/*": ["./config/src/index.ts"],
-      "@shared/*": ["./libs/shared/src/index.ts"]
+      "@shared/*": ["./libs/shared/src/index.ts"],
+      "@http": ["./libs/http/src/index.ts"],
+      "ui": ["./libs/ui/src/index.ts"]
     }
   }
 }

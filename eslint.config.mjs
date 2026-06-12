@@ -19,14 +19,14 @@ export default [
           vars: 'all',
         },
       ],
-      "@nx/enforce-module-boundaries": [
-        "error",
+      '@nx/enforce-module-boundaries': [
+        'error',
         {
-          "allow": [],
-          "enforceBuildableLibDependency": true,
-          "depConstraints": []
-        }
-      ]
+          allow: [],
+          enforceBuildableLibDependency: true,
+          depConstraints: [],
+        },
+      ],
     },
   },
   {

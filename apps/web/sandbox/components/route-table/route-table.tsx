@@ -7,6 +7,7 @@ import { json as jsonPlugin } from '@codemirror/lang-json';
 
 export function RouteTable({ data }: { data: Data }) {
   const routes: Route[] = data?.routes ?? [];
+  console.log({ routes });
   return (
     <>
       <h2 className="text-2xl font-bold">Routes</h2>
@@ -28,47 +29,103 @@ export function RouteTable({ data }: { data: Data }) {
     </>
   );
 }
+// utils/cn.ts
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: any[]) {
+  return twMerge(clsx(inputs));
+}
+
+const getStatusProps = (
+  status: string | number,
+): { statusText: string | number; className: string } => {
+  const statusCode = String(status);
+  if (statusCode.startsWith('2')) {
+    return {
+      statusText: '200',
+      className: 'bg-green-600',
+    };
+  } else if (statusCode.startsWith('4')) {
+    return {
+      statusText: '400',
+      className: 'bg-red-600',
+    };
+  } else {
+    return {
+      statusText: 'Status Unknown',
+      className: 'bg-gray-600',
+    };
+  }
+};
+
+export const RouteStatus = ({ status }: { status: string | number }) => {
+  const { className, statusText } = getStatusProps(status);
+
+  return (
+    <div
+      className={`${className} font-semibold text-white px-5 py-1 flex items-center`}
+    >
+      {statusText}
+    </div>
+  );
+};
 
 export function RouteEditor({ route }: { route: Route }) {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
-  const [error, setError] = React.useState<string>('');
+  const [globalMessage, setGlobalMessage] = React.useState<{
+    type: string;
+    message: string;
+  }>({
+    type: '',
+    message: '',
+  });
   const [params, setParams] = React.useState<string>('');
-  const [url, setUrl] = React.useState<string>(route.url);
+  const [url, setUrl] = React.useState<string>(route.meta.self);
   const [editing, setEditing] = React.useState<boolean>(false);
   const [showEditor, setShowEditing] = React.useState<boolean>(true);
   const [show, setShow] = React.useState<boolean>(true);
   const [json, setJSON] = React.useState<string>('{}');
-
   React.useEffect(() => {
     (async () => {
       if (!url) {
-        return setError('Url was not provided.');
+        return setGlobalMessage({
+          type: 'ERROR',
+          message: 'Url was not provided.',
+        });
       }
 
       try {
         const response = await fetch(url);
         const resJson = await response.json();
-
-        setJSON(JSON.stringify(resJson, null, 4));
-        return;
+        return setJSON(JSON.stringify(resJson, null, 4));
       } catch (e) {
-        setError('Ruh roh Raggy');
+        setGlobalMessage({
+          type: 'ERROR',
+          message: 'Ruh roh Raggy',
+        });
       }
     })();
   }, [url]);
+  const routeInputValue: string = `${route.meta.self}${params ? `?${params}` : ''}`;
 
-  const routeInputValue = `${route.url}${params ? `?${params}` : ''}`;
   return (
     <>
-      {error && <div className="text-red">{error}</div>}
+      {globalMessage?.message && (
+        <div
+          className={`text-${globalMessage.type === 'ERROR' ? 'red' : 'teal-500'}`}
+        >
+          {globalMessage.message}
+        </div>
+      )}
       <div className="w-full flex justify-between border-b border-gray-500 bg-cyan-950 hover:bg-gray-700 text-left tracking-wider">
         <div className="px-6 py-3">
-          <span className="font-semibold text-gray-300 uppercase ">Name: </span>
-          {route.name}
+          <span className="font-semibold text-gray-300 uppercase">
+            Name:&nbsp;
+          </span>
+          {route.meta.name}
         </div>
-        <div className="px-5 py-1 font-semibold bg-green-600 text-white flex items-center">
-          {route.status}
-        </div>
+        <RouteStatus status={route.status} />
       </div>
       {show && (
         <>
@@ -100,7 +157,7 @@ export function RouteEditor({ route }: { route: Route }) {
           ) : (
             <div className="flex w-full">
               <div className="w-full bg-gray-900 px-6 py-2">
-                <code>{routeInputValue ?? ''}</code>
+                <code>{routeInputValue}</code>
               </div>
             </div>
           )}
@@ -130,12 +187,31 @@ export function RouteEditor({ route }: { route: Route }) {
               </svg>
             </button>
             <button
+              className="px-3 py-3 hover:text-white hover:bg-blue-600 cursor-pointer"
+              onClick={() => {
+                navigator.clipboard
+                  .writeText(json)
+                  .then(() => {
+                    setGlobalMessage({
+                      type: 'INFO',
+                      message: 'Text successfully copied!',
+                    });
+                    console.log('Text successfully copied!');
+                  })
+                  .catch((err) => {
+                    console.error('Failed to copy text: ', err);
+                  });
+              }}
+            >
+              Copy
+            </button>
+            <button
               className="px-3 py-3 hover:text-white hover:bg-orange-700 cursor-pointer"
               onClick={() => {
                 setEditing(!editing);
                 setTimeout(() => {
                   inputRef?.current?.focus();
-                });
+                }, 100);
               }}
             >
               <svg
