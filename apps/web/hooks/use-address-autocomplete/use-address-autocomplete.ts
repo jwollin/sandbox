@@ -11,7 +11,7 @@ export interface Address {
   country: string;
 }
 
-const EMPTY_ADDRESS: Address = {
+export const EMPTY_ADDRESS: Address = {
   line1: '',
   city: '',
   state: '',
@@ -33,14 +33,11 @@ export function useAddressAutocomplete() {
       return;
     }
 
-    autocomplete.placeholder = places
-      ? 'Start typing address...'
-      : 'Loading address search...';
+    autocomplete.placeholder = places ? 'Address' : 'Loading address search...';
   }, [places]);
 
   useEffect(() => {
     const autocomplete = autocompleteRef.current;
-
     if (!autocomplete || !places) {
       return;
     }
@@ -50,6 +47,8 @@ export function useAddressAutocomplete() {
         event as google.maps.places.PlacePredictionSelectEvent;
       const place = selectEvent.placePrediction.toPlace();
       await place.fetchFields({ fields: ['addressComponents'] });
+
+      console.log({place});
 
       const next: Address = {
         line1: '',
@@ -88,16 +87,38 @@ export function useAddressAutocomplete() {
       setAddress(next);
     };
 
-    autocomplete.addEventListener('gmp-select', handleSelect);
+    // autocomplete.addEventListener('gmp-select', handleSelect);
 
     return () => {
       autocomplete.removeEventListener('gmp-select', handleSelect);
     };
   }, [places]);
 
+
   return {
     autocompleteRef,
     address,
+    formattedAddress: formatAddress(address),
     isReady: Boolean(places),
   };
+}
+
+
+export function formatAddress(address: Address): string {
+  if (!address) return '';
+
+  // 1. Group city, state, and zip with correct spacing
+  const cityStateZip = [
+    address.city?.trim(),
+    address.state?.trim()
+  ].filter(Boolean).join(', ') + (address.zip ? ` ${address.zip.trim()}` : '');
+
+  // 2. Combine line1, the city/state/zip block, and country
+  return [
+    address.line1?.trim(),
+    cityStateZip.trim(),
+    address.country?.trim()
+  ]
+    .filter(Boolean) // Removes empty elements
+    .join(', ');     // Joins remaining parts with commas
 }

@@ -1,27 +1,26 @@
 import { headers } from 'next/headers';
 
-/**
- * Universal utility to get the base URL without prop drilling.
- * Works safely in Server Components, Client Components, and API routes.
- */
+const DEFAULT_WEB_URL = 'http://localhost:3000';
+
+function firstHeaderValue(value: string | null): string | undefined {
+  return value?.split(',')[0]?.trim() || undefined;
+}
+
 export async function getBaseUrl(): Promise<string> {
-  // 1. Server-side environment check
-  if (typeof window === 'undefined') {
-    try {
-      const headersList = await headers();
-      const host = headersList.get('host');
+  const headersList = await headers();
+  const host =
+    firstHeaderValue(headersList.get('x-forwarded-host')) ??
+    firstHeaderValue(headersList.get('host'));
 
-      if (host) {
-        const protocol =
-          process.env.NODE_ENV === 'development' ? 'http' : 'https';
-        return `${protocol}://${host}`;
-      }
-    } catch {
-      console.error('Ruh Roh, Raggy, something went wrong!');
-    }
-
-    return 'http://localhost:3000';
+  if (!host) {
+    return process.env.NEXT_PUBLIC_APP_URL ?? DEFAULT_WEB_URL;
   }
 
-  return window.location.origin;
+  const protocol =
+    firstHeaderValue(headersList.get('x-forwarded-proto')) ??
+    (host.startsWith('localhost') || host.startsWith('127.0.0.1')
+      ? 'http'
+      : 'https');
+
+  return `${protocol}://${host}`;
 }

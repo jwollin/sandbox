@@ -1,0 +1,50 @@
+[
+  {
+    "id": "rush-lake",
+    "name": "Rush Lake",
+    "lat": 45.2733,
+    "lng": -93.6631,
+    "type": "lake",
+    "notes": "Good general fishing lake, accessible shore spots"
+  },
+  {
+    "id": "lake-maria",
+    "name": "Lake Maria",
+    "lat": 45.274,
+    "lng": -93.9515,
+    "type": "lake",
+    "notes": "State park lake, quieter, less pressure"
+  },
+  {
+    "id": "buffalo-lake",
+    "name": "Buffalo Lake (Buffalo)",
+    "lat": 45.1711,
+    "lng": -93.8747,
+    "type": "lake",
+    "notes": "Larger lake, mixed species, boat access"
+  },
+  {
+    "id": "cedar-lake",
+    "name": "Cedar Lake (Maple Grove)",
+    "lat": 45.0856,
+    "lng": -93.4627,
+    "type": "lake",
+    "notes": "Popular metro fishing lake, higher pressure"
+  },
+  {
+    "id": "independence-lake",
+    "name": "Lake Independence",
+    "lat": 45.035,
+    "lng": -93.694,
+    "type": "lake",
+    "notes": "Clear water, deeper structure, good bass fishing"
+  },
+  {
+    "id": "minnetonka",
+    "name": "Lake Minnetonka",
+    "lat": 44.9133,
+    "lng": -93.5663,
+    "type": "lake",
+    "notes": "Large complex system, best long-term scoring target lake"
+  }
+]
