@@ -11,10 +11,7 @@ export type PageProps = {
 export default async function Page({ searchParams }: PageProps) {
   try {
     const resolvedSearchParams = await searchParams;
-    const queryString = new URLSearchParams(
-      resolvedSearchParams as Record<string, string>
-    ).toString();
-    const query = new URLSearchParams(queryString).toString();
+    const query = new URLSearchParams(resolvedSearchParams).toString();
     const response = await fetch(`${getNodeApiBaseUrl()}/api/fishing${query}`);
     const { data } = await response.json() ?? {};
 
